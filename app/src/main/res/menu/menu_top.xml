@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/info"
+        android:icon="@drawable/ic_baseline_info_24"
+        android:title="@string/title_info" />
+
+    <item
+        android:id="@+id/night_mode"
+        android:icon="@drawable/ic_baseline_nights_stay_24"
+        android:title="@string/title_mode" />
+
+    <item
+        android:id="@+id/loggout"
+        android:icon="@drawable/ic_baseline_do_not_disturb_alt_24"
+        android:title="@string/loggout" />
+
+
+
+
+</menu>
