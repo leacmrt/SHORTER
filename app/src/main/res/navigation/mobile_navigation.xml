@@ -28,4 +28,10 @@
         android:name="com.example.testppe.ui.recherche.Recherche"
         android:label="Recherche"
         tools:layout="@layout/fragment_recherche" />
+
+    <fragment
+        android:id="@+id/navigation_avis"
+        android:name="com.example.testppe.Avis"
+        android:label="Recherche"
+        tools:layout="@layout/fragment_avis" />
 </navigation>

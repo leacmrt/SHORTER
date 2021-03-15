@@ -18,6 +18,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_mode">Settings</string>
     <string name="title_info">Information</string>
+    <string name="title_Avis">Avis</string>
+
     <string name="loggout">LOG OUT</string>
     <string name="title_activity_informations">Informations</string>
     <!-- Strings used for fragments for navigation -->
