@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications,R.id.navigation_recherche,R.id.navigation_avis)
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications,R.id.navigation_recherche,R.id.navigation_stat)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
                  break;
+            case R.id.avis :
+                Toast.makeText(MainActivity.this, "AVIS ",Toast.LENGTH_LONG).show();
+                Intent intent2 = new Intent(this, Avis.class);
+
+                startActivity(intent2);
+
+                break;
 
 
             default:

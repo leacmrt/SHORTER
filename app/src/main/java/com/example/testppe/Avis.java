@@ -11,28 +11,39 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.testppe.ui.dashboard.DashboardViewModel;
 
-public class Avis extends Fragment {
+public class Avis extends AppCompatActivity {
 
     private Button add =null;
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_avis, container, false);
-        add = root.findViewById(R.id.button3);
 
-        add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(Avis.this.getContext(), "Avis ajouté", Toast.LENGTH_LONG).show();
-            }
-        });
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.fragment_avis);
+            Button back = findViewById(R.id.button3);
 
-        return root;
+            back.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Toast.makeText(Avis.this.getApplicationContext(), "Avis ajouté", Toast.LENGTH_LONG).show();
+                }
+            });
+
+            Button back1 = findViewById(R.id.button4);
+
+            back1.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                   // Toast.makeText(Avis.this.getApplicationContext(), "Avis ajouté", Toast.LENGTH_LONG).show();
+                finish();
+                }
+            });
+
 
     }
     }

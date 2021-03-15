@@ -12,10 +12,15 @@
         android:title="@string/title_mode" />
 
     <item
+        android:id="@+id/avis"
+        android:icon="@drawable/ic_baseline_emoji_people_24"
+        android:title="@string/title_Avis" />
+
+
+    <item
         android:id="@+id/loggout"
         android:icon="@drawable/ic_baseline_do_not_disturb_alt_24"
         android:title="@string/loggout" />
-
 
 
 
