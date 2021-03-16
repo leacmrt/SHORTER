@@ -122,15 +122,29 @@ public class LoginActivity extends AppCompatActivity {
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                try {
-                    if(BDD.verification(LoginActivity.this,usernameEditText.getText().toString(),passwordEditText.getText().toString()))
-                    { Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                      startActivity(intent);
-                    }else  Toast.makeText(LoginActivity.this, usernameEditText.getText().toString()+"WRONG PASSWORD "+passwordEditText.getText().toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, usernameEditText.getText().toString(), Toast.LENGTH_LONG).show();
+                Thread background = new Thread(new Runnable() {
+                    public void run() {
+                try
 
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                    {
+
+                        if (BDD.verification(LoginActivity.this, usernameEditText.getText().toString(), passwordEditText.getText().toString()).equals(passwordEditText.getText().toString())) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }else {
+                            LoginActivity.this.runOnUiThread(new Runnable() {
+                                public void run() {Toast.makeText(LoginActivity.this, "WRONG MAIL OR PASSWORD. PLEASE TRY AGAIN",Toast.LENGTH_LONG).show();
+                                }});
+                        }
+                    } catch(
+                    ClassNotFoundException e)
+
+                    {
+                        e.printStackTrace();
+                    }
+                }});
+                background.start();
 
 
             }

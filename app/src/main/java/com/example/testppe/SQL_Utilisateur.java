@@ -30,7 +30,7 @@ public class SQL_Utilisateur {
     ProgressDialog pd;
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://10.0.2.2:3306/Shorter?autoReconnect=true";
+    static final String DB_URL = "jdbc:mysql://10.0.2.2:3306/shorter?autoReconnect=true";
 
     //  Database credentials
     static final String USER = "root";
@@ -46,7 +46,7 @@ public class SQL_Utilisateur {
                 pd.setMessage("Sending..Please wait");
                 pd.show();
             }});*/
-            Connection conn = null;
+        Connection conn = null;
 
         Statement stmt = null;
         //this.c = c;
@@ -130,7 +130,7 @@ public class SQL_Utilisateur {
 
     }
 
-    public boolean verification(Activity a,String mail,String mdp) throws ClassNotFoundException {
+    public String verification(Activity a,String mail,String mdp) throws ClassNotFoundException {
         Connection conn = null;
         Statement stmt = null;
         String nametmp = " ";
@@ -143,25 +143,16 @@ public class SQL_Utilisateur {
             stmt = conn.createStatement();
             String sql;
 
-            sql = "SELECT Password FROM Utilisateur WHERE Mail ="+mail+";";
+            sql = "SELECT Password FROM Utilisateur WHERE Mail ='"+mail+"';";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next())
             {
                 String name = rs.getString("Password");
                 nametmp=name;
-                if(nametmp.equals(mdp))
-                {
-                    return true;
-                }
-                else return false;
-            }
+                return nametmp;
 
-            String finalNametmp = nametmp;
-            a.runOnUiThread(new Runnable() {
-                public void run() {
-                    Toast.makeText(a, finalNametmp, Toast.LENGTH_LONG).show();
-                }});
+            }
 
 
 
@@ -170,7 +161,7 @@ public class SQL_Utilisateur {
         {
             throwables.printStackTrace();
         }
-      return true;
+      return "unknown";
     }
 
 
@@ -245,7 +236,7 @@ public class SQL_Utilisateur {
             while (rs.next()) {
                 String name = rs.getString("Critique");
                 nametmp=name;
-                return nametmp;
+
             }
         }
         catch (SQLException throwables) {
