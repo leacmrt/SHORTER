@@ -25,20 +25,21 @@ import android.widget.Toast;
 
 import com.example.testppe.MainActivity;
 import com.example.testppe.R;
+import com.example.testppe.SQL_Utilisateur;
 import com.example.testppe.ui.login.LoginViewModel;
 import com.example.testppe.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-
+    private SQL_Utilisateur BDD = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
-
+        BDD = new SQL_Utilisateur();
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
@@ -121,8 +122,16 @@ public class LoginActivity extends AppCompatActivity {
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+                try {
+                    if(BDD.verification(LoginActivity.this,usernameEditText.getText().toString(),passwordEditText.getText().toString()))
+                    { Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                      startActivity(intent);
+                    }else  Toast.makeText(LoginActivity.this, usernameEditText.getText().toString()+"WRONG PASSWORD "+passwordEditText.getText().toString(), Toast.LENGTH_LONG).show();
+
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         });

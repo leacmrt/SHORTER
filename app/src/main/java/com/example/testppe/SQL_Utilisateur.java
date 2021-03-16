@@ -11,6 +11,8 @@ import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.example.testppe.ui.login.LoginActivity;
+
 import java.io.ByteArrayOutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -37,13 +39,15 @@ public class SQL_Utilisateur {
 
     public void ajout(Activity a, Context c, EditText Name, EditText Prenom, EditText Pass1, EditText Pass2,EditText Mail, EditText Phone) {
 
-        a.runOnUiThread(new Runnable() {
+       /* a.runOnUiThread(new Runnable() {
             public void run() {
                 pd = new ProgressDialog(c);
                 pd.setTitle("Send");
                 pd.setMessage("Sending..Please wait");
                 pd.show();
-            }});Connection conn = null;
+            }});*/
+            Connection conn = null;
+
         Statement stmt = null;
         //this.c = c;
 
@@ -59,7 +63,7 @@ public class SQL_Utilisateur {
        String phone = Phone.getText().toString();
 
 
-        String SQL = "INSERT INTO Utilisateru(Nom,Prenom,Mail,Telephone,PassWord ) "
+        String SQL = "INSERT INTO Utilisateur(Nom,Prenom,Mail,Telephone,Password ) "
                 + "VALUES(?,?,?,?,?)";
 
         try {
@@ -95,7 +99,7 @@ public class SQL_Utilisateur {
                 public void run() {
 
 
-                    pd.dismiss();
+                  //  pd.dismiss();
 
                     if(affectedRows!= 0)
                     {
@@ -125,6 +129,50 @@ public class SQL_Utilisateur {
 
 
     }
+
+    public boolean verification(Activity a,String mail,String mdp) throws ClassNotFoundException {
+        Connection conn = null;
+        Statement stmt = null;
+        String nametmp = " ";
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            stmt = conn.createStatement();
+            String sql;
+
+            sql = "SELECT Password FROM Utilisateur WHERE Mail ="+mail+";";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next())
+            {
+                String name = rs.getString("Password");
+                nametmp=name;
+                if(nametmp.equals(mdp))
+                {
+                    return true;
+                }
+                else return false;
+            }
+
+            String finalNametmp = nametmp;
+            a.runOnUiThread(new Runnable() {
+                public void run() {
+                    Toast.makeText(a, finalNametmp, Toast.LENGTH_LONG).show();
+                }});
+
+
+
+        }
+        catch (SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+      return true;
+    }
+
 
     public String getName1(int id) throws ClassNotFoundException {
         Connection conn = null;

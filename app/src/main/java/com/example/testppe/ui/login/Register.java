@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.testppe.MainActivity;
 import com.example.testppe.R;
 import com.example.testppe.SQL_Utilisateur;
 
@@ -34,10 +36,29 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-              finish();
-              //ajout BDD SQL_UTILISATEUR
-                BDD.ajout(Register.this,Register.this.getApplicationContext(),nom,prenom,pass1,pass2,mail,telephone);
-            }
-        });
+                //ajout BDD SQL_UTILISATEUR
+                Thread background = new Thread(new Runnable() {
+
+                    public void run() {
+
+                        if((pass1.getText().toString()).equals(pass2.getText().toString()))
+                        {
+                            Register.this.runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(Register.this, "SAME PASSWORD ", Toast.LENGTH_LONG).show();
+                            }});
+
+                            BDD.ajout(Register.this,Register.this.getApplicationContext(),nom,prenom,pass1,pass2,mail,telephone);
+                        }else  {
+                            Register.this.runOnUiThread(new Runnable() {
+                                public void run() {Toast.makeText(Register.this, " NOT THE SAME PASSWORD",Toast.LENGTH_LONG).show();
+                                }});
+                        }
+            }}
+            );
+                background.start();
+                finish();
+            }});
+
+      };
     }
-}
