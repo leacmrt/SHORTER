@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,17 +22,36 @@ import com.example.testppe.ui.dashboard.DashboardViewModel;
 public class Avis extends AppCompatActivity {
 
     private Button add =null;
+    private EditText avis =null;
+    private SQL_Utilisateur BDD = null;
+    private int util_id=0;
+    public Avis(){
 
+
+    }
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_avis);
             Button back = findViewById(R.id.button3);
-
+            avis = findViewById(R.id.editText);
+            BDD = new SQL_Utilisateur();
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+            util_id= getIntent().getIntExtra("EXTRA_SESSION_ID",0);
+            }
             back.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+
+                    Thread background = new Thread(new Runnable() {
+
+                        public void run() {
+
+                            BDD.ajoutAvis(avis,util_id);}});
+                    background.start();
                     Toast.makeText(Avis.this.getApplicationContext(), "Avis ajouté", Toast.LENGTH_LONG).show();
+                    avis.setText("");
                 }
             });
 

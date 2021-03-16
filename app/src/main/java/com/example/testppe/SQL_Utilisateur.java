@@ -164,11 +164,49 @@ public class SQL_Utilisateur {
       return "unknown";
     }
 
-
-    public String getName1(int id) throws ClassNotFoundException {
+    public void ajoutAvis(EditText avis, int util_id) {//ajout avis dans BDD interne
         Connection conn = null;
         Statement stmt = null;
-        String nametmp = null;
+
+        String SQL = "INSERT INTO Avis_Utilisateur(id_util,Avis ) "
+                + "VALUES(?,?)";
+
+        try {
+            //STEP 2: Register JDBC driver
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //STEP 3: Open a connection
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+
+            //STEP 4: Execute a query
+            System.out.println("Creating statement...");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        try (
+
+                PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setInt(1, util_id);
+            pstmt.setString(2, avis.getText().toString());
+
+
+
+            int affectedRows = pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public int getId(String toString) {
+        Connection conn = null;
+        Statement stmt = null;
+        int nametmp =0;
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -177,230 +215,24 @@ public class SQL_Utilisateur {
 
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT  Name1 FROM match_data WHERE id ="+id+";";
+
+            sql = "SELECT id FROM Utilisateur WHERE Mail ='"+toString+"';";
             ResultSet rs = stmt.executeQuery(sql);
 
-            while (rs.next()) {
-                String name = rs.getString("Name1");
+            while (rs.next())
+            {
+                int name = rs.getInt("id");
                 nametmp=name;
+                System.out.println("testid"+name);
                 return nametmp;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return "unknown";
-    }
-
-    public String getName2(int id) throws ClassNotFoundException {
-        Connection conn = null;
-        Statement stmt = null;
-        String nametmp = null;
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT  Name2 FROM match_data WHERE id ="+id+";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                String name = rs.getString("Name2");
-                nametmp=name;
-                return nametmp;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return "unknown";
-    }
-    public String getCritique(int id) throws ClassNotFoundException {
-        Connection conn = null;
-        Statement stmt = null;
-        String nametmp = null;
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT Critique FROM match_data WHERE id ="+id+";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                String name = rs.getString("Critique");
-                nametmp=name;
 
             }
+
+
+
         }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return "unknown";
-    }
-    public String getLocalisation(int id) throws ClassNotFoundException {
-        Connection conn = null;
-        Statement stmt = null;
-        String nametmp = null;
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT Localisation FROM match_data WHERE id ="+id+";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                String name = rs.getString("Localisation");
-                nametmp=name;
-                return nametmp;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return "unknown";
-    }
-
-    public Blob getPicture(int id) throws ClassNotFoundException {
-        Connection conn = null;
-        Statement stmt = null;
-        Blob nametmp = null;
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT Photo FROM match_data WHERE id ="+id+";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                Blob name = rs.getBlob("Photo");
-                nametmp=name;
-                return nametmp;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
-    }
-
-    public int getScore(int id) throws ClassNotFoundException {
-        Connection conn = null;
-        Statement stmt = null;
-        int scoretmp = 0;
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT Technic FROM match_data WHERE id ="+id+";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                int score= rs.getInt("Technic");
-                scoretmp=score;
-                return scoretmp;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return 0;
-    }
-    public int getScore1(int id) throws ClassNotFoundException {
-        Connection conn = null;
-        Statement stmt = null;
-        int scoretmp = 0;
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT Score1 FROM match_data WHERE id ="+id+";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                int score= rs.getInt("Score1");
-                scoretmp=score;
-                return scoretmp;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return 0;
-    }
-
-    public int getScore2(int id) throws ClassNotFoundException {
-        Connection conn = null;
-        Statement stmt = null;
-        int scoretmp = 0;
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT Score2 FROM match_data WHERE id ="+id+";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                int score= rs.getInt("Score2");
-                scoretmp=score;
-                return scoretmp;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return 0;
-    }
-
-
-    public int getStrength(int id) throws ClassNotFoundException {
-        Connection conn = null;
-        Statement stmt = null;
-        int scoretmp = 0;
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT Strength FROM match_data WHERE id ="+id+";";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                int score= rs.getInt("Strength");
-                scoretmp=score;
-                return scoretmp;
-            }
-        }
-        catch (SQLException throwables) {
+        catch (SQLException | ClassNotFoundException throwables)
+        {
             throwables.printStackTrace();
         }
         return 0;

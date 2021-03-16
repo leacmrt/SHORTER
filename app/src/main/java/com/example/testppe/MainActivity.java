@@ -20,12 +20,21 @@ import androidx.navigation.ui.NavigationUI;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private int util_id=0;
+    public MainActivity()
+    {
 
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            util_id= getIntent().getIntExtra("EXTRA_SESSION_ID",0);
+            //The key argument here must match that used in the other activity
+        }
 
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -69,8 +78,9 @@ public class MainActivity extends AppCompatActivity {
                  break;
             case R.id.avis :
                 Toast.makeText(MainActivity.this, "AVIS ",Toast.LENGTH_LONG).show();
-                Intent intent2 = new Intent(this, Avis.class);
 
+                Intent intent2 = new Intent(this, Avis.class);
+                intent2.putExtra("EXTRA_SESSION_ID", util_id);
                 startActivity(intent2);
 
                 break;

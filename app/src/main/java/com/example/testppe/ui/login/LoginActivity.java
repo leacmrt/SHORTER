@@ -33,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private SQL_Utilisateur BDD = null;
+    private int util_id = 0;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,10 +133,13 @@ public class LoginActivity extends AppCompatActivity {
                     {
 
                         if (BDD.verification(LoginActivity.this, usernameEditText.getText().toString(), passwordEditText.getText().toString()).equals(passwordEditText.getText().toString())) {
+                            util_id=BDD.getId( usernameEditText.getText().toString());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("EXTRA_SESSION_ID", util_id);
                             startActivity(intent);
                         }else {
-                            LoginActivity.this.runOnUiThread(new Runnable() {
+                            LoginActivity.this.runOnUiThread(new Runnable()
+                               {
                                 public void run() {Toast.makeText(LoginActivity.this, "WRONG MAIL OR PASSWORD. PLEASE TRY AGAIN",Toast.LENGTH_LONG).show();
                                 }});
                         }
