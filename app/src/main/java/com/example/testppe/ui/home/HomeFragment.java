@@ -28,6 +28,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private DBHelper mydb;
+    ArrayList<String> tmp=new ArrayList<String>();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
@@ -35,7 +36,7 @@ public class HomeFragment extends Fragment {
         //final TextView textView = root.findViewById(R.id.text_home);
         mydb=new DBHelper(HomeFragment.this.getContext());
 
-       ArrayList tmp = mydb.getAllMatch();
+        tmp = mydb.getAllMatch();
         ListView lv = (ListView) root.findViewById(R.id.list);
 
         String List1 []= {"farine avoine","petits lus","avocats (brésil)","tomate","carotte","lait"};
@@ -54,9 +55,11 @@ public class HomeFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
+                String la =tmp.get(position);
                 Toast.makeText(HomeFragment.this.getActivity(),"test",Toast.LENGTH_LONG).show();
                 Intent intent1 = new Intent(HomeFragment.this.getActivity(), SelectItem.class);
+                intent1.putExtra("EXTRA_SESSION_ID", la);
+
                 startActivity(intent1);
 
             }
