@@ -1,12 +1,15 @@
 package com.example.testppe.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.testppe.DBHelper;
 import com.example.testppe.R;
+import com.example.testppe.SelectItem;
+import com.example.testppe.Settings;
 
 import java.util.ArrayList;
 
@@ -46,7 +51,32 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Toast.makeText(HomeFragment.this.getActivity(),"test",Toast.LENGTH_LONG).show();
+                Intent intent1 = new Intent(HomeFragment.this.getActivity(), SelectItem.class);
+                startActivity(intent1);
+
+            }
+        });
+
 
         return root;
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+
+        if (fragment != null) {
+            HomeFragment.this.getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .commit();
+
+            return true;
+        }
+
+        return false;
     }
 }

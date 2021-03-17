@@ -47,6 +47,11 @@
             android:label="@string/title_Avis">
 
         </activity>
+        <activity
+            android:name=".SelectItem"
+            android:label="Select">
+
+        </activity>
 
         <activity
             android:name=".ui.login.Register">
