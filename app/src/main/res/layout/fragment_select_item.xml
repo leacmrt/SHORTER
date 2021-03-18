@@ -148,7 +148,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
-            android:text="ALTERNAIQUE"
+            android:text="ALTERNATIVE"
             android:textColor="@color/black"
             android:textSize="17dp"
             app:layout_constraintStart_toStartOf="parent"

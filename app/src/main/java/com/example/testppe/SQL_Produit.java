@@ -33,7 +33,7 @@ public class SQL_Produit {
             stmt = conn.createStatement();
             String sql;
 
-            sql = "SELECT Password FROM Produit;";
+            sql = "SELECT Nom FROM Produit;";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next())
@@ -65,7 +65,7 @@ public class SQL_Produit {
             stmt = conn.createStatement();
             String sql;
 
-            sql = "SELECT Password FROM Produit;";
+            sql = "SELECT id FROM Produit;";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next())
