@@ -23,12 +23,14 @@ import java.util.List;
 
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> implements Filterable {
     private List<String> exampleList;
+    private DBHelper mydb ;
     private List<String> exampleListFull;
     Activity p;
     class ExampleViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView1;
         TextView textView2;
+
         ExampleViewHolder(View itemView) {
             super(itemView);
 
@@ -37,7 +39,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
             textView1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    mydb.insertrecherche(textView1.getText().toString());
                     Intent intent1 = new Intent(p, SelectItem.class);
                     intent1.putExtra("EXTRA_SESSION_ID", textView1.getText().toString());
 
@@ -50,6 +52,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     public ExampleAdapter(List<String> exampleList, Activity a) {
         this.exampleList = exampleList;
         this.p=a;
+        mydb = new DBHelper(a.getBaseContext());
         exampleListFull = new ArrayList<>(exampleList);
         for(int i=0;i<exampleListFull.size();i++)
         {System.out.println(exampleList.get(i));}
