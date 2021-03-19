@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        ImageButton back = findViewById(R.id.buttonback);
         Button signIn = findViewById(R.id.button5);
         nom=findViewById(R.id.editTextTextPersonName3);
         prenom=findViewById(R.id.editTextTextPersonName4);
@@ -32,6 +34,13 @@ public class Register extends AppCompatActivity {
         pass2=findViewById(R.id.editTextTextPassword2);
 
         BDD = new SQL_Utilisateur();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }});
+
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
