@@ -79,7 +79,7 @@ public class Localisation extends FragmentActivity implements OnMapReadyCallback
 
         });
 
-        
+
         latLng = new LatLng(-34, 151);
 
         // locate your position

@@ -16,7 +16,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        tools:context=".Localisation"/>
+        tools:context=".MapsActivity"/>
     <!---<Button
         android:layout_width="100dp"
         android:layout_height="wrap_content"
