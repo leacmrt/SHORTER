@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.recherche.Recherche">
 
-    <TextView
+  <!--  <TextView
         android:id="@+id/text_recherche"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,11 +19,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.973" />
+        app:layout_constraintVertical_bias="0.973" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:padding="4dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-
-    <SearchView
+    <!--->SearchView
         android:id="@+id/searchView"
         android:layout_width="390dp"
         android:layout_height="59dp"
@@ -35,6 +45,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /> !-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,4 +34,5 @@
     <string name="SwitchLand">Landscape</string>
     <string name="SwitchLang">English</string>
     <string name="title_Stat">Statistic</string>
+    <string name="action_search">action</string>
 </resources>
