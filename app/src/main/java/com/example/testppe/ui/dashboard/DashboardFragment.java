@@ -129,7 +129,8 @@ public class DashboardFragment extends Fragment {
                         @Override
                         public void run() {
 
-                            if (barcodes.valueAt(0).email != null) {
+                            if (barcodes.valueAt(0).email != null)
+                            {
                                 barcodeText.removeCallbacks(null);
                                 barcodeData = barcodes.valueAt(0).email.address;
                                 barcodeText.setText(barcodeData);

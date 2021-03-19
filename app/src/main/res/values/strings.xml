@@ -35,4 +35,5 @@
     <string name="SwitchLang">English</string>
     <string name="title_Stat">Statistic</string>
     <string name="action_search">action</string>
+    <string name="title_activity_maps">Localisation</string>
 </resources>
