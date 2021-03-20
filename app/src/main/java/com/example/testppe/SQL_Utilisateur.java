@@ -30,7 +30,7 @@ public class SQL_Utilisateur {
     ProgressDialog pd;
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://10.0.2.2:3306/shorter?autoReconnect=true";
+    static final String DB_URL = "jdbc:mysql://192.168.1.15:3306/shorter?autoReconnect=true";
 
     //  Database credentials
     static final String USER = "root";

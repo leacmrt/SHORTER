@@ -23,17 +23,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.testppe.DBHelper_Utilisateur;
 import com.example.testppe.MainActivity;
 import com.example.testppe.R;
 import com.example.testppe.SQL_Utilisateur;
-import com.example.testppe.ui.login.LoginViewModel;
-import com.example.testppe.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private SQL_Utilisateur BDD = null;
     private int util_id = 0;
+    private DBHelper_Utilisateur help;
+
 
 
     @Override
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
         BDD = new SQL_Utilisateur();
+        help = new DBHelper_Utilisateur(LoginActivity.this.getBaseContext());
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
@@ -126,40 +128,33 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 Toast.makeText(LoginActivity.this, usernameEditText.getText().toString(), Toast.LENGTH_LONG).show();
-                Thread background = new Thread(new Runnable() {
-                    public void run() {
-                try
+                /*Thread background = new Thread(new Runnable() {
+                    public void run() {*/
 
-                    {
-
-                        if (BDD.verification(LoginActivity.this, usernameEditText.getText().toString(), passwordEditText.getText().toString()).equals(passwordEditText.getText().toString())) {
-                            util_id=BDD.getId( usernameEditText.getText().toString());
+                        if (help.getData(usernameEditText.getText().toString()).equals(passwordEditText.getText().toString()))
+                        {    //BDD.verification(LoginActivity.this, usernameEditText.getText().toString(), passwordEditText.getText().toString()).equals(passwordEditText.getText().toString())) {
+                            //util_id=BDD.getId( usernameEditText.getText().toString());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.putExtra("EXTRA_SESSION_ID", util_id);
                             startActivity(intent);
                         }else {
-                            LoginActivity.this.runOnUiThread(new Runnable()
+                           /* LoginActivity.this.runOnUiThread(new Runnable()
                                {
-                                public void run() {Toast.makeText(LoginActivity.this, "WRONG MAIL OR PASSWORD. PLEASE TRY AGAIN",Toast.LENGTH_LONG).show();
-                                }});
+                                public void run() {*/Toast.makeText(LoginActivity.this, "WRONG MAIL OR PASSWORD. PLEASE TRY AGAIN",Toast.LENGTH_LONG).show();
+                                }
+            //});
                         }
-                    } catch(
-                    ClassNotFoundException e)
-
-                    {
-                        e.printStackTrace();
-                    }
-                }});
-                background.start();
+                 /*   }});
+                background.start();*/
 
 
-            }
+          //  }
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(LoginActivity.this, "hoolo",Toast.LENGTH_LONG).show();
                 Intent intent1 = new Intent(LoginActivity.this, Register.class);
                 startActivity(intent1);
 
