@@ -1,21 +1,16 @@
 package com.example.testppe;
 
-
-
-import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.text.DateFormat;
+import java.util.ArrayList;
 
 public class DBHelper_Utilisateur extends SQLiteOpenHelper {
 
@@ -29,7 +24,7 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
 
 
     public DBHelper_Utilisateur(@Nullable Context context) {
-       super(context, DATABASE_NAME , null, 1);
+       super(context, DATABASE_NAME , null, 2);
     }
 
 
@@ -45,12 +40,13 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS Historique");
+        db.execSQL("DROP TABLE IF EXISTS Utilisateur");
         onCreate(db);
     }
 
-    public boolean insertUtilisateur (String nom,String prenom,String phone,String mail,String password) {
+    public boolean insertUtilisateur (String nom,String prenom,String mail,String phone,String password) {
         SQLiteDatabase db = this.getWritableDatabase();
+        System.out.println("on est la");
         ContentValues contentValues = new ContentValues();
         //Nom,Prenom,Mail,Telephone,Password
         contentValues.put("Nom",nom);
@@ -73,7 +69,26 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
         if (res.moveToFirst()){
             do {
                 // Passing values
-                rendu = res.getString(1);
+                System.out.println(res.getString(res.getColumnIndexOrThrow("Password")));
+                        rendu =res.getString(res.getColumnIndexOrThrow("Password"));
+
+            } while(res.moveToNext());
+        }
+        res.close();
+        return rendu;
+    }
+
+    public int getid(String mail) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int rendu = 0;
+        Cursor res =  db.rawQuery( "select id from Utilisateur where Mail = ?", new String[] {mail});
+
+
+        if (res.moveToFirst()){
+            do {
+                // Passing values
+                System.out.println(res.getString(res.getColumnIndexOrThrow("id")));
+                rendu =Integer.valueOf(res.getString(res.getColumnIndexOrThrow("id")));
 
             } while(res.moveToNext());
         }

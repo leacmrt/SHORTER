@@ -25,7 +25,7 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
     private HashMap hp;
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 1);
+        super(context, DATABASE_NAME , null, 2);
     }
 
     @Override
@@ -40,6 +40,10 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
+
+            if(newVersion>oldVersion)
+                onCreate(db);
+
         db.execSQL("DROP TABLE IF EXISTS Historique");
         onCreate(db);
     }

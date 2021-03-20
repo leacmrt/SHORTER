@@ -58,15 +58,12 @@ public class Recherche extends Fragment {
         Thread background = new Thread(new Runnable() {
 
             public void run() {
-                try {
-                    listal=BDD.getAllItems();
-                    Recherche.this.getActivity().runOnUiThread(new Runnable() {
-                        public void run() {
-                    setUpRecyclerView();}});
-
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                listal.add("Carotte");
+                listal.add("Eau");
+                listal.add("Gateau");
+                Recherche.this.getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        setUpRecyclerView();}});
 
             }});
         background.start();

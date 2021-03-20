@@ -85,20 +85,18 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
-
             case R.id.Localisation :
                 Toast.makeText(MainActivity.this, "LOCALISATION",Toast.LENGTH_LONG).show();
 
                 Intent intent3= new Intent(this, MapsActivity.class);
-               // intent3.putExtra("EXTRA_SESSION_ID", util_id);
+                // intent3.putExtra("EXTRA_SESSION_ID", util_id);
                 startActivity(intent3);
 
                 break;
 
-
             default:
                 Toast.makeText(MainActivity.this, "default command ",Toast.LENGTH_LONG).show();
-               break;
+
 
         }
 

@@ -5,22 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Activity;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.content.Intent;
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.testppe.DBHelper;
 import com.example.testppe.DBHelper_Utilisateur;
 import com.example.testppe.MainActivity;
 import com.example.testppe.R;
@@ -28,16 +16,15 @@ import com.example.testppe.SQL_Utilisateur;
 
 public class Register extends AppCompatActivity {
 
-    SQL_Utilisateur BDD ;
+    SQL_Utilisateur BDD = null;
     EditText nom,prenom,mail,telephone,pass1,pass2= null;
     DBHelper_Utilisateur help;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-     //   help=new DBHelper_Utilisateur();
         help = new DBHelper_Utilisateur(Register.this.getBaseContext());
-        ImageButton back = findViewById(R.id.buttonback);
+
         Button signIn = findViewById(R.id.button5);
         nom=findViewById(R.id.editTextTextPersonName3);
         prenom=findViewById(R.id.editTextTextPersonName4);
@@ -47,41 +34,36 @@ public class Register extends AppCompatActivity {
         pass2=findViewById(R.id.editTextTextPassword2);
 
         BDD = new SQL_Utilisateur();
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }});
-
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //ajout BDD SQL_UTILISATEUR
-              /*  Thread background = new Thread(new Runnable() {
+               /* Thread background = new Thread(new Runnable() {
 
                     public void run() {*/
 
                         if((pass1.getText().toString()).equals(pass2.getText().toString()))
                         {
                            /* Register.this.runOnUiThread(new Runnable() {
-                            public void run() {*/
+                            public void run() {
                                 Toast.makeText(Register.this, "SAME PASSWORD ", Toast.LENGTH_LONG).show();
-                                help.insertUtilisateur(nom.getText().toString(),prenom.getText().toString(),pass1.getText().toString(),mail.getText().toString(),telephone.getText().toString());
+                            }});*/
+                             Toast.makeText(Register.this, "SAME PASSWORD ", Toast.LENGTH_LONG).show();
+                                help.insertUtilisateur(nom.getText().toString(),prenom.getText().toString(),mail.getText().toString(),telephone.getText().toString(),pass1.getText().toString());
 
-                         //   }});
-                           // BDD.ajout(Register.this,Register.this.getApplicationContext(),nom,prenom,pass1,pass2,mail,telephone);
-                        }else  {
-                           /* Register.this.runOnUiThread(new Runnable() {
+
+                          /*  BDD.ajout(Register.this,Register.this.getApplicationContext(),nom,prenom,pass1,pass2,mail,telephone);
+                       */}else  {
+                          /*  Register.this.runOnUiThread(new Runnable() {
                                 public void run() {*/Toast.makeText(Register.this, " NOT THE SAME PASSWORD",Toast.LENGTH_LONG).show();
-                              //  }});
+                             //   }});
                         }
-            }}
-            );
+           // }}
+          //  );
                // background.start();
                 finish();
-            //}});
+            }});
 
       };
     }

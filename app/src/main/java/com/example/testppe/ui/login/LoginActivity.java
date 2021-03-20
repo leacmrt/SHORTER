@@ -27,6 +27,8 @@ import com.example.testppe.DBHelper_Utilisateur;
 import com.example.testppe.MainActivity;
 import com.example.testppe.R;
 import com.example.testppe.SQL_Utilisateur;
+import com.example.testppe.ui.login.LoginViewModel;
+import com.example.testppe.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     private SQL_Utilisateur BDD = null;
     private int util_id = 0;
     private DBHelper_Utilisateur help;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 .get(LoginViewModel.class);
         BDD = new SQL_Utilisateur();
         help = new DBHelper_Utilisateur(LoginActivity.this.getBaseContext());
+
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
@@ -132,29 +133,29 @@ public class LoginActivity extends AppCompatActivity {
                     public void run() {*/
 
                         if (help.getData(usernameEditText.getText().toString()).equals(passwordEditText.getText().toString()))
-                        {    //BDD.verification(LoginActivity.this, usernameEditText.getText().toString(), passwordEditText.getText().toString()).equals(passwordEditText.getText().toString())) {
-                            //util_id=BDD.getId( usernameEditText.getText().toString());
+                        {
+                                //BDD.verification(LoginActivity.this, usernameEditText.getText().toString(), passwordEditText.getText().toString()).equals(passwordEditText.getText().toString())) {
+                            util_id=help.getid( usernameEditText.getText().toString());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("EXTRA_SESSION_ID", util_id);
+                            intent.putExtra("EXTRA_SESSION_ID", 0);
                             startActivity(intent);
                         }else {
                            /* LoginActivity.this.runOnUiThread(new Runnable()
                                {
                                 public void run() {*/Toast.makeText(LoginActivity.this, "WRONG MAIL OR PASSWORD. PLEASE TRY AGAIN",Toast.LENGTH_LONG).show();
-                                }
-            //});
+                               // }});
                         }
-                 /*   }});
+                   /* }});
                 background.start();*/
 
 
-          //  }
+            }
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "hoolo",Toast.LENGTH_LONG).show();
+
                 Intent intent1 = new Intent(LoginActivity.this, Register.class);
                 startActivity(intent1);
 
