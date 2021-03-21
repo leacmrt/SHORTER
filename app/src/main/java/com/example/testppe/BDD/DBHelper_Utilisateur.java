@@ -1,4 +1,4 @@
-package com.example.testppe;
+package com.example.testppe.BDD;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class DBHelper_Utilisateur extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "MyDBName.db_pste";
+    public static final String DATABASE_NAME = "MyDBName.db_pste1";
     public static final String PROJET_TABLE_NAME = "PSTE";
     public static final String PROJET_COLUMN_ID = "id";
     public static final String PROJET_COLUMN_NAME1 = "Recherche";
@@ -24,7 +24,7 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
 
 
     public DBHelper_Utilisateur(@Nullable Context context) {
-       super(context, DATABASE_NAME , null, 2);
+       super(context, DATABASE_NAME , null, 4);
     }
 
 

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testppe.BDD.DBHelper;
 import com.example.testppe.ui.home.HomeFragment;
 import com.example.testppe.ui.recherche.Recherche;
 

@@ -1,4 +1,4 @@
-package com.example.testppe;
+package com.example.testppe.BDD;
 
 
 import java.text.DateFormat;
@@ -15,17 +15,21 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DBHelper<Date> extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "MyDBName.db_pste";
-    public static final String PROJET_TABLE_NAME = "PSTE";
+    public static final String DATABASE_NAME = "MyDBName.db_pste1";
+    public static final String PROJET_TABLE_NAME = "Historique";
     public static final String PROJET_COLUMN_ID = "id";
     public static final String PROJET_COLUMN_NAME1 = "Recherche";
     public static final String PROJET_COLUMN_NAME2 = "Date";
     public static final String PROJET_COLUMN_SCORE = "Donnees";
-
+    Context myContext;
+    SQLiteDatabase myDataBase;
     private HashMap hp;
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 2);
+        super(context, DATABASE_NAME , null, 4);
+        myContext = context;
+        myDataBase = this.getReadableDatabase();
+
     }
 
     @Override
@@ -49,6 +53,7 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
     }
 
     public boolean insertrecherche (String re) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Recherche",re);
@@ -90,10 +95,12 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> getAllMatch() {
+
         ArrayList<String> array_list = new ArrayList<String>();
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
+
         Cursor res =  db.rawQuery( "select * from Historique", null );
         res.moveToFirst();
 

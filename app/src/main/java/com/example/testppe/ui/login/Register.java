@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.testppe.DBHelper_Utilisateur;
+import com.example.testppe.BDD.DBHelper_Utilisateur;
 import com.example.testppe.MainActivity;
 import com.example.testppe.R;
 import com.example.testppe.SQL_Utilisateur;

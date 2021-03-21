@@ -17,12 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.testppe.BDD.DBHelper_Avis;
 import com.example.testppe.ui.dashboard.DashboardViewModel;
 
 public class Avis extends AppCompatActivity {
 
     private Button add =null;
     private EditText avis =null;
+    private DBHelper_Avis help= null;
     private SQL_Utilisateur BDD = null;
     private int util_id=0;
     public Avis(){
@@ -37,6 +39,7 @@ public class Avis extends AppCompatActivity {
             Button back = findViewById(R.id.button3);
             avis = findViewById(R.id.editText);
             BDD = new SQL_Utilisateur();
+            help = new DBHelper_Avis(Avis.this);
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
             util_id= getIntent().getIntExtra("EXTRA_SESSION_ID",0);
@@ -44,12 +47,13 @@ public class Avis extends AppCompatActivity {
             back.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
-                    Thread background = new Thread(new Runnable() {
+                   /* Thread background = new Thread(new Runnable() {
 
                         public void run() {
 
                             BDD.ajoutAvis(avis,util_id);}});
-                    background.start();
+                    background.start();*/
+                    help.insertavis(util_id,avis.getText().toString());
                     Toast.makeText(Avis.this.getApplicationContext(), "Avis ajouté", Toast.LENGTH_LONG).show();
                     avis.setText("");
                 }

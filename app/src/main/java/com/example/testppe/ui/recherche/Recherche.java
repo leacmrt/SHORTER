@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.testppe.DBHelper;
+import com.example.testppe.BDD.DBHelper;
 import com.example.testppe.ExampleAdapter;
 import com.example.testppe.MainActivity;
 import com.example.testppe.R;

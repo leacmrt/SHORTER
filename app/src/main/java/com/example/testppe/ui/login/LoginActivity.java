@@ -23,7 +23,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.testppe.DBHelper_Utilisateur;
+import com.example.testppe.BDD.DBHelper;
+import com.example.testppe.BDD.DBHelper_Avis;
+import com.example.testppe.BDD.DBHelper_Utilisateur;
 import com.example.testppe.MainActivity;
 import com.example.testppe.R;
 import com.example.testppe.SQL_Utilisateur;
@@ -36,7 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private SQL_Utilisateur BDD = null;
     private int util_id = 0;
     private DBHelper_Utilisateur help;
-
+    private DBHelper help1;
+    private DBHelper_Avis help2;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
                 .get(LoginViewModel.class);
         BDD = new SQL_Utilisateur();
         help = new DBHelper_Utilisateur(LoginActivity.this.getBaseContext());
+        help1 = new DBHelper(LoginActivity.this.getBaseContext());
+        help2 = new DBHelper_Avis(LoginActivity.this.getBaseContext());
+
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);

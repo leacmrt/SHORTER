@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.testppe.DBHelper;
+import com.example.testppe.BDD.DBHelper;
 import com.example.testppe.R;
 import com.example.testppe.SelectItem;
 import com.example.testppe.Settings;
@@ -29,13 +29,12 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private DBHelper mydb;
     ArrayList<String> tmp=new ArrayList<String>();
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         //final TextView textView = root.findViewById(R.id.text_home);
         mydb=new DBHelper(HomeFragment.this.getContext());
-
         tmp = mydb.getAllMatch();
         ListView lv = (ListView) root.findViewById(R.id.list);
 
