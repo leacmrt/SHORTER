@@ -28,8 +28,7 @@ public class DBHelper_Materiaux  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Materiaux" +
-                        "(id integer, nom text)"
+                "create table Materiaux" + "(id integer, nom text)"
         );
     }
 
@@ -70,5 +69,17 @@ public class DBHelper_Materiaux  extends SQLiteOpenHelper {
         return db.delete("Materiaux",
                 "id = ? ",
                 new String[] { Integer.toString(id) });
+    }
+
+    public String getMateriaux(int emballage) {
+        String rv = "unknown";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id=?";
+        String[] whereargs = new String[]{String.valueOf(emballage)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("nom"));
+        }
+        return rv;
     }
 }

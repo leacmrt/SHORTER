@@ -28,8 +28,7 @@ public class DBHelper_ProduitTransport  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table ProduitTransport" +
-                        "(id_produit integer, id_transport integer,provenance text)"
+                "create table ProduitTransport" + "(id_produit integer, id_transport integer,provenance text)"
         );
     }
 

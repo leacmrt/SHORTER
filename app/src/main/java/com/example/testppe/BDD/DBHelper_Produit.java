@@ -29,8 +29,7 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Produit" +
-                        "(id_Produit integer,nom text, marque text)"
+                "create table Produit(id_Produit integer,nom text, marque text)"
         );
     }
 

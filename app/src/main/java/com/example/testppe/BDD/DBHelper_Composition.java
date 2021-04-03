@@ -71,4 +71,17 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
                 "id = ? ",
                 new String[] { Integer.toString(id) });
     }
+
+    public String getName(long id) {
+
+        String rv = "not found";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "quantite=?";
+        String[] whereargs = new String[]{String.valueOf(id)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("quantite"));
+        }
+        return rv;
+    }
 }

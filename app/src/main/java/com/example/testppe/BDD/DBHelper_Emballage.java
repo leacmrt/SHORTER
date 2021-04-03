@@ -71,4 +71,18 @@ public class DBHelper_Emballage extends SQLiteOpenHelper {
                 "id = ? ",
                 new String[] { Integer.toString(id) });
     }
+
+    public int getIdmateriaux(String sessionId) {
+
+        int rv = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id_produit=?";
+        String[] whereargs = new String[]{String.valueOf(sessionId)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getInt(csr.getColumnIndex("id_materiaux"));
+        }
+        return rv;
+    }
+
 }
