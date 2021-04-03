@@ -57,7 +57,6 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Recherche",re);
-
         contentValues.put("Date",System.currentTimeMillis());
         db.insert("Historique", null, contentValues);
         return true;
@@ -116,5 +115,17 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         return array_list;
     }
 
+
+    public String getNom(int position) {
+        String rv = "unknown";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id=?";
+        String[] whereargs = new String[]{String.valueOf(position)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("Recherche"));
+        }
+        return rv;
+    }
 
 }

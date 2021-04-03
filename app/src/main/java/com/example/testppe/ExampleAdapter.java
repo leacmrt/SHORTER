@@ -42,8 +42,9 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
                 public void onClick(View view) {
                     mydb.insertrecherche(textView1.getText().toString());
                     Intent intent1 = new Intent(p, SelectItem.class);
-                    intent1.putExtra("EXTRA_SESSION_ID", textView1.getText().toString());
 
+                    intent1.putExtra("EXTRA_SESSION_ID", textView1.getText().toString());
+                    intent1.putExtra("Nom", textView1.getText().toString());
                     p.startActivity(intent1);
 
                 }

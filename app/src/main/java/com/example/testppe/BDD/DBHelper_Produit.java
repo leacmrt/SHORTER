@@ -74,18 +74,14 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
 
     public int getid(String toString) {
 
-            int id =0;
-            SQLiteDatabase db = this.getReadableDatabase();
-
-            Cursor res =  db.rawQuery( "select id_Produit from Produit", null );
-            res.moveToFirst();
-
-            while(res.isAfterLast() == false){
-
-              id = Integer.parseInt(res.getString(res.getColumnIndex("id")));
-              res.moveToNext();
-            }
-            return id;
-
+        int rv = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "nom=?";
+        String[] whereargs = new String[]{String.valueOf(toString)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getInt(csr.getColumnIndex("id_Produit"));
+        }
+        return rv;
     }
 }

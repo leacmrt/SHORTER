@@ -24,10 +24,12 @@ public class SelectItem extends AppCompatActivity {
     ArrayList<String> listtmp;
     ArrayList<Integer> listid;
     int position,id;
-
+    String nom;
     TextView recyclage;
     private DBHelper_Emballage emdb;
     private DBHelper_Materiaux madb;
+    private DBHelper_Produit prodb;
+
     private SQL_Produit BDD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +37,10 @@ public class SelectItem extends AppCompatActivity {
         setContentView(R.layout.fragment_select_item);
         emdb = new DBHelper_Emballage(SelectItem.this.getBaseContext());
         madb = new DBHelper_Materiaux(SelectItem.this.getBaseContext());
+        prodb = new DBHelper_Produit(SelectItem.this.getBaseContext());
 
         String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        nom = getIntent().getStringExtra("numero");
         Toast.makeText(SelectItem.this.getApplicationContext(), sessionId, Toast.LENGTH_LONG).show();
         Button back = findViewById(R.id.buttonback);
         TextView Affiche = findViewById(R.id.textView6);
@@ -56,10 +60,17 @@ public class SelectItem extends AppCompatActivity {
 
     private void recuperation_elements(String sessionId) {
 
-        //ecriture des emballages 
-       int emballage = emdb.getIdmateriaux(sessionId);
-       String emballagefin = madb.getMateriaux(emballage);
-       recyclage.setText(emballagefin);
+        //ecriture des emballages
+        System.out.println(" helooooo");
+        Toast.makeText(SelectItem.this.getBaseContext(), "la", Toast.LENGTH_LONG).show();
+        System.out.println("id session"+nom);
+        int produitId = prodb.getid(nom);
+
+        int emballage = emdb.getIdmateriaux(String.valueOf(produitId));
+        System.out.println("id mat"+emballage);
+        String emballagefin = madb.getMateriaux(emballage);
+        System.out.println(" nom "+emballagefin);
+        recyclage.setText(emballagefin);
 
     }
 

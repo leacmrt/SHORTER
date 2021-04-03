@@ -55,10 +55,13 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 String la =tmp.get(position);
+                System.out.println("ps"+position);
+                String nom = mydb.getNom(position+1);
+                System.out.println("nopm"+nom);
                 Toast.makeText(HomeFragment.this.getActivity(),"test",Toast.LENGTH_LONG).show();
                 Intent intent1 = new Intent(HomeFragment.this.getActivity(), SelectItem.class);
                 intent1.putExtra("EXTRA_SESSION_ID", la);
-
+                intent1.putExtra("numero", nom);
                 startActivity(intent1);
 
             }
