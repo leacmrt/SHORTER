@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testppe.BDD.DBHelper;
+import com.example.testppe.BDD.DBHelper_Produit;
 import com.example.testppe.ExampleAdapter;
 import com.example.testppe.MainActivity;
 import com.example.testppe.R;
@@ -41,7 +42,8 @@ public class Recherche extends Fragment {
     private SQL_Produit BDD;
     private RecyclerView recyclerView;
     private ExampleAdapter adapter;
-
+    private DBHelper_Produit Prodb;
+    ArrayList<String> tmp=new ArrayList<String>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class Recherche extends Fragment {
         //final TextView textView = root.findViewById(R.id.text_recherche);
         listal= new ArrayList<String>();
         BDD = new SQL_Produit();
+        Prodb = new DBHelper_Produit(Recherche.this.getContext());
 
         recyclerView = root.findViewById(R.id.recycler_view);
 
@@ -58,9 +61,10 @@ public class Recherche extends Fragment {
         Thread background = new Thread(new Runnable() {
 
             public void run() {
-                listal.add("Carotte");
+                /*listal.add("Carotte");
                 listal.add("Eau");
-                listal.add("Gateau");
+                listal.add("Gateau");*/
+                listal=  Prodb.getAllProduit();
                 Recherche.this.getActivity().runOnUiThread(new Runnable() {
                     public void run() {
                         setUpRecyclerView();}});

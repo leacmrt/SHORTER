@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DBHelper_Produit extends SQLiteOpenHelper {
@@ -83,5 +84,22 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
             rv = csr.getInt(csr.getColumnIndex("id_Produit"));
         }
         return rv;
+    }
+
+    public ArrayList<String> getAllProduit() {
+
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res =  db.rawQuery( "select * from Produit", null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndex("nom")));
+            res.moveToNext();
+        }
+        return array_list;
     }
 }
