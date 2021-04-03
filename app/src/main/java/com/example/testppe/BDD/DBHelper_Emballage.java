@@ -52,9 +52,9 @@ public class DBHelper_Emballage extends SQLiteOpenHelper {
         db.insert("Emballage", null, contentValues);
     }
 
-    public Cursor getData(int id) {
+    public Cursor getData(int idmat,int idprod) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from Emballage where id="+id+"", null );
+        Cursor res =  db.rawQuery( "select * from Emballage where id_materiaux="+idmat+" and id_produit="+idprod+" " ,null );
         return res;
     }
 

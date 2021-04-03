@@ -52,9 +52,9 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
         db.insert("Composition", null, contentValues);
     }
 
-    public Cursor getData(int id) {
+    public Cursor getData(int idP, int idI) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from Composition where id="+id+"", null );
+        Cursor res =  db.rawQuery( "select * from Composition where id_Produit="+idP+" and id_Ingredient="+ idI+" ", null );
         return res;
     }
 
@@ -67,7 +67,7 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
 
     public Integer deleteComposition (Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("Projet",
+        return db.delete("Composition",
                 "id = ? ",
                 new String[] { Integer.toString(id) });
     }

@@ -67,7 +67,7 @@ public class DBHelper_Transport extends SQLiteOpenHelper {
 
     public Integer deleteTransport (Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("Projet",
+        return db.delete("Transport",
                 "id = ? ",
                 new String[] { Integer.toString(id) });
     }

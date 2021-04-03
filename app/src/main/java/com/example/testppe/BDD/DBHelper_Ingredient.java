@@ -40,7 +40,7 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
         if(newVersion>oldVersion)
         {onCreate(db);}
 
-        db.execSQL("DROP TABLE IF EXISTS Avis");
+        db.execSQL("DROP TABLE IF EXISTS Ingredient");
         onCreate(db);
     }
 

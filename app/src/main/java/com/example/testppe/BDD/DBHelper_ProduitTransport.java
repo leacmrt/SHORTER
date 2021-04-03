@@ -52,9 +52,9 @@ public class DBHelper_ProduitTransport  extends SQLiteOpenHelper {
         db.insert("ProduitTransport", null, contentValues);
     }
 
-    public Cursor getData(int id) {
+    public Cursor getData(int idP, int idT) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from ProduitTransport where id="+id+"", null );
+        Cursor res =  db.rawQuery( "select * from ProduitTransport where id_produit="+idP+" and id_transport="+idT+" ", null );
         return res;
     }
 
@@ -65,10 +65,10 @@ public class DBHelper_ProduitTransport  extends SQLiteOpenHelper {
     }
 
 
-    public Integer deleteProduitTransport (Integer id) {
+    public Integer deleteProduitTransport (Integer idP, Integer idT) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("ProduitTransport",
-                "id = ? ",
-                new String[] { Integer.toString(id) });
+                "id_produit = ? ",
+                new String[] { Integer.toString(idP) });
     }
 }
