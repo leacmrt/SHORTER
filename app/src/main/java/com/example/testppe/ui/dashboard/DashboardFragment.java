@@ -1,6 +1,7 @@
 package com.example.testppe.ui.dashboard;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -12,6 +13,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +22,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.testppe.BDD.DBHelper;
+import com.example.testppe.BDD.DBHelper_Produit;
 import com.example.testppe.R;
+import com.example.testppe.SelectItem;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -39,6 +44,8 @@ public class DashboardFragment extends Fragment {
     private ToneGenerator toneGen1;
     private TextView barcodeText;
     private String barcodeData;
+    private DBHelper mydb ;
+    private DBHelper_Produit proddb;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -133,6 +140,20 @@ public class DashboardFragment extends Fragment {
                                 barcodeText.setText(barcodeData);
                                 toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
 
+                            }
+
+                            Toast.makeText(DashboardFragment.this.getContext(), "Barcode"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
+                            if(!barcodeData.toString().equals("Barcode Text"))//si un barcode a été reconnu
+                            {
+                                Toast.makeText(DashboardFragment.this.getContext(), "Youpi"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
+
+                                int id = proddb.getid(barcodeData.toString());
+                                //insertion
+                                mydb.insertrecherche(String.valueOf(id));
+                                Intent intent1 = new Intent(DashboardFragment.this.getActivity(), SelectItem.class);
+                                intent1.putExtra("EXTRA_SESSION_ID", String.valueOf(id));
+
+                                DashboardFragment.this.getActivity().startActivity(intent1);
                             }
                         }
                     });

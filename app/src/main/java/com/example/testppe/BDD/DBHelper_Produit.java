@@ -7,6 +7,7 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.DateFormat;
 import java.util.HashMap;
 
 public class DBHelper_Produit extends SQLiteOpenHelper {
@@ -70,5 +71,22 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         return db.delete("Produit",
                 "id_Produit = ? ",
                 new String[] { Integer.toString(id) });
+    }
+
+    public int getid(String toString) {
+
+            int id =0;
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor res =  db.rawQuery( "select id_Produit from Produit", null );
+            res.moveToFirst();
+
+            while(res.isAfterLast() == false){
+
+              id = Integer.parseInt(res.getString(res.getColumnIndex("id")));
+              res.moveToNext();
+            }
+            return id;
+
     }
 }
