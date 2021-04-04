@@ -71,4 +71,16 @@ public class DBHelper_Transport extends SQLiteOpenHelper {
                 "id = ? ",
                 new String[] { Integer.toString(id) });
     }
+
+    public String getTransport(int idproduittransport) {
+        String rv = "unknown";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id=?";
+        String[] whereargs = new String[]{String.valueOf(idproduittransport)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("nom"));
+        }
+        return rv;
+    }
 }

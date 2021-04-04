@@ -70,4 +70,28 @@ public class DBHelper_ProduitTransport  extends SQLiteOpenHelper {
                 "id_produit = ? ",
                 new String[] { Integer.toString(idP) });
     }
+
+    public int getIdtransport(String valueOf) {
+        int rv = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id_produit=?";
+        String[] whereargs = new String[]{String.valueOf(valueOf)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getInt(csr.getColumnIndex("id_transport"));
+        }
+        return rv;
+    }
+
+    public String getProvenance(String valueOf) {
+        String rv = "Unknown";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id_produit=?";
+        String[] whereargs = new String[]{String.valueOf(valueOf)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("provenance"));
+        }
+        return rv;
+    }
 }
