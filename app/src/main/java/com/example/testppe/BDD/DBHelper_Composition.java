@@ -84,4 +84,28 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
         }
         return rv;
     }
+
+    public int getIdCompo(String valueOf) {
+        int rv = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id_Produit=?";
+        String[] whereargs = new String[]{String.valueOf(valueOf)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getInt(csr.getColumnIndex("id_Ingredient"));
+        }
+        return rv;
+    }
+
+    public int getquantite(String valueOf) {
+        int rv = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id_Produit=?";
+        String[] whereargs = new String[]{String.valueOf(valueOf)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getInt(csr.getColumnIndex("Quantite"));
+        }
+        return rv;
+    }
 }

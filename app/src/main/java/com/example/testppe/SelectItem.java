@@ -109,9 +109,8 @@ public class SelectItem extends AppCompatActivity {
             //Traitement transport
         int idproduittransport = protdb.getIdtransport(String.valueOf(produitId));
         String provenance = protdb.getProvenance(String.valueOf(produitId));
-        System.out.println("id mat"+emballage);
         String typetransport = trandb.getTransport(idproduittransport);
-        System.out.println(" nom "+typetransport);
+
 
             if(typetransport.equals("Camion"))
             {
@@ -126,22 +125,23 @@ public class SelectItem extends AppCompatActivity {
                 defaut.setText("Venant de  "+provenance+"\n Par : "+typetransport);
             }
 
-          if(!provenance.equals("France"))
-          {
-              alternative.setText("Achetez chez un producteur local ");
-          }
+              if(!provenance.equals("France"))
+              {
+                  alternative.setText("Achetez chez un producteur local ");
+              }
 
-        if(provenance.equals("France"))
-        {
-           qualite.setText("Produit près de chez vous");
-        }
+             if(provenance.equals("France"))
+             {
+                qualite.setText("Produit près de chez vous");
+             }
 
       //Traitement composition
-        int idproduitcompo = protdb.getIdtransport(String.valueOf(produitId));
-        String provenance = protdb.getProvenance(String.valueOf(produitId));
-        System.out.println("id mat"+emballage);
-        String typetransport = trandb.getTransport(idproduittransport);
-        System.out.println(" nom "+typetransport);
+        int idproduitcompo = codb.getIdCompo(String.valueOf(produitId));
+        int quantité = codb.getquantite(String.valueOf(produitId));
+        String ingredient = inDB.getIngredient(idproduitcompo);
+        String provenanceIn= inDB.getpro(idproduitcompo);
+        String eau = inDB.geteau(idproduitcompo);
+
     }
 
 }

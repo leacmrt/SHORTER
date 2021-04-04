@@ -71,4 +71,40 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
                 "id = ? ",
                 new String[] { Integer.toString(id) });
     }
+
+    public String getIngredient(int idproduitcompo) {
+        String rv = "unknown";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id=?";
+        String[] whereargs = new String[]{String.valueOf(idproduitcompo)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("nom"));
+        }
+        return rv;
+    }
+
+    public String getpro(int idproduitcompo) {
+        String rv = "unknown";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id=?";
+        String[] whereargs = new String[]{String.valueOf(idproduitcompo)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("provenance"));
+        }
+        return rv;
+    }
+
+    public String geteau(int idproduitcompo) {
+        String rv = "unknown";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id=?";
+        String[] whereargs = new String[]{String.valueOf(idproduitcompo)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("eau"));
+        }
+        return rv;
+    }
 }
