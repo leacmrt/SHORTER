@@ -102,4 +102,16 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         }
         return array_list;
     }
+
+    public String getmarque(int produitId) {
+        String rv = "unknown";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "id_Produit=?";
+        String[] whereargs = new String[]{String.valueOf(produitId)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("marque"));
+        }
+        return rv;
+    }
 }

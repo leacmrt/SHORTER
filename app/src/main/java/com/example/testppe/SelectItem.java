@@ -33,7 +33,9 @@ public class SelectItem extends AppCompatActivity {
     TextView defaut;
     TextView qualite ;
     TextView alternative;
-
+    TextView marque;
+    TextView eau;
+    TextView origine;
     //création des BDD
     private DBHelper_Emballage emdb;
     private DBHelper_Materiaux madb;
@@ -68,6 +70,9 @@ public class SelectItem extends AppCompatActivity {
         qualite =  findViewById(R.id.textView14);
         alternative =  findViewById(R.id.textView18);
 
+        marque = findViewById(R.id.textViewmarque);
+        eau = findViewById(R.id.textVieweau);
+        origine = findViewById(R.id.textVieworigine);
 
         Affiche.setText(nom);
 
@@ -86,6 +91,9 @@ public class SelectItem extends AppCompatActivity {
 
         int produitId = prodb.getid(nom);
 
+        //traitement marque
+        String marqu = prodb.getmarque(produitId);
+        marque.setText("Marque :" + marqu);
 
         //Traitement emballage
         int emballage = emdb.getIdmateriaux(String.valueOf(produitId));
@@ -110,7 +118,7 @@ public class SelectItem extends AppCompatActivity {
         int idproduittransport = protdb.getIdtransport(String.valueOf(produitId));
         String provenance = protdb.getProvenance(String.valueOf(produitId));
         String typetransport = trandb.getTransport(idproduittransport);
-
+        origine.setText("De: "+provenance);
 
             if(typetransport.equals("Camion"))
             {
@@ -140,7 +148,10 @@ public class SelectItem extends AppCompatActivity {
         int quantité = codb.getquantite(String.valueOf(produitId));
         String ingredient = inDB.getIngredient(idproduitcompo);
         String provenanceIn= inDB.getpro(idproduitcompo);
-        String eau = inDB.geteau(idproduitcompo);
+        String ea = inDB.geteau(idproduitcompo);
+
+        eau.setText("Consomme: "+ea+" \n L d'eau");
+
 
     }
 
