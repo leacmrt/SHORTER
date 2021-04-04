@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.testppe.BDD.DBHelper_Composition;
 import com.example.testppe.BDD.DBHelper_Emballage;
+import com.example.testppe.BDD.DBHelper_Ingredient;
 import com.example.testppe.BDD.DBHelper_Materiaux;
 import com.example.testppe.BDD.DBHelper_Produit;
 import com.example.testppe.BDD.DBHelper_ProduitTransport;
@@ -31,11 +33,15 @@ public class SelectItem extends AppCompatActivity {
     TextView defaut;
     TextView qualite ;
     TextView alternative;
+
+    //création des BDD
     private DBHelper_Emballage emdb;
     private DBHelper_Materiaux madb;
     private DBHelper_Produit prodb;
     private DBHelper_ProduitTransport protdb;
     private DBHelper_Transport trandb;
+    private DBHelper_Composition codb;
+    private DBHelper_Ingredient inDB;
 
     private SQL_Produit BDD;
     @Override
@@ -49,10 +55,11 @@ public class SelectItem extends AppCompatActivity {
         prodb = new DBHelper_Produit(SelectItem.this.getBaseContext());
         protdb = new DBHelper_ProduitTransport(SelectItem.this.getBaseContext());
         trandb = new DBHelper_Transport(SelectItem.this.getBaseContext());
+        codb = new DBHelper_Composition(SelectItem.this.getBaseContext());
+        inDB = new DBHelper_Ingredient(SelectItem.this.getBaseContext());
 
         String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
         nom = getIntent().getStringExtra("numero");
-        Toast.makeText(SelectItem.this.getApplicationContext(), sessionId, Toast.LENGTH_LONG).show();
 
         Button back = findViewById(R.id.buttonback); //initialisation des widget
         TextView Affiche = findViewById(R.id.textView6);
@@ -106,21 +113,35 @@ public class SelectItem extends AppCompatActivity {
         String typetransport = trandb.getTransport(idproduittransport);
         System.out.println(" nom "+typetransport);
 
-        if(typetransport.equals("Camion"))
+            if(typetransport.equals("Camion"))
+            {
+                defaut.setText("Venant de  "+provenance+"\n Par : "+typetransport);
+            }
+            if(typetransport.equals("Bateau"))
+            {
+                defaut.setText("Venant de  "+provenance+"\n Par : "+typetransport);
+            }
+            if(typetransport.equals("Avion"))
+            {
+                defaut.setText("Venant de  "+provenance+"\n Par : "+typetransport);
+            }
+
+          if(!provenance.equals("France"))
+          {
+              alternative.setText("Achetez chez un producteur local ");
+          }
+
+        if(provenance.equals("France"))
         {
-            defaut.setText("Venant de  "+emballagefin+"\n Par : "+provenance);
-        }
-        if(typetransport.equals("Bateau"))
-        {
-            defaut.setText("Venant de  "+emballagefin+"\n Par : "+provenance);
-        }
-        if(typetransport.equals("Avion"))
-        {
-            defaut.setText("Venant de  "+emballagefin+"\n Par : "+provenance);
+           qualite.setText("Produit près de chez vous");
         }
 
-
-
+      //Traitement composition
+        int idproduitcompo = protdb.getIdtransport(String.valueOf(produitId));
+        String provenance = protdb.getProvenance(String.valueOf(produitId));
+        System.out.println("id mat"+emballage);
+        String typetransport = trandb.getTransport(idproduittransport);
+        System.out.println(" nom "+typetransport);
     }
 
 }
