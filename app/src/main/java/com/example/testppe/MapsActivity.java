@@ -11,12 +11,15 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.testppe.BDD.DBHelper_Utilisateur;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -46,11 +49,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
     private GoogleMap mMap;
+    Button add ;
+    String id_util;
+    DBHelper_Utilisateur utildb;
+
+    String pays = "France";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        utildb = new DBHelper_Utilisateur(MapsActivity.this.getBaseContext());
+        add =  findViewById(R.id.button3);
 
+        id_util = getIntent().getStringExtra("EXTRA_SESSION_ID");
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
@@ -59,6 +70,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                utildb.addLocal(id_util,pays);
+                finish();
+            }
+        });
+
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -138,6 +157,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String subLocality = listAddresses.get(0).getSubLocality();
                     markerOptions.title("" + latLng + "," + subLocality + "," + state
                             + "," + country);
+
+                    pays = country;
+
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();

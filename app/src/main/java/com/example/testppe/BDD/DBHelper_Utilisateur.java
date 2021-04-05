@@ -140,4 +140,13 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
         }
         return array_list;
     }
+
+    public Boolean addLocal(String id_util, String pays) {//ajout localisation dans la BDD
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Localisation", pays);
+        db.update("Utilisateur", contentValues, "id = ? ", new String[] { id_util } );
+        return true;
+    }
 }

@@ -89,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "LOCALISATION",Toast.LENGTH_LONG).show();
 
                 Intent intent3= new Intent(this, MapsActivity.class);
-                // intent3.putExtra("EXTRA_SESSION_ID", util_id);
+                //intent3.putExtra("Nom", textView1.getText().toString());
+                intent3.putExtra("EXTRA_SESSION_ID", util_id);
                 startActivity(intent3);
 
                 break;
