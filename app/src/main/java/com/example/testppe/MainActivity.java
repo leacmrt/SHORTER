@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.info:
                 Toast.makeText(MainActivity.this, "INFORMATIONS ",Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, Informations.class);
-
                 startActivity(intent);
 
                  break;
