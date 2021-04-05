@@ -149,7 +149,7 @@ public class DashboardFragment extends Fragment {
                             {
                                 Toast.makeText(DashboardFragment.this.getContext(), "Youpi"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
 
-                                String id = proddb.getid(barcodeData.toString());//recup le nom de l'objet
+                                String id = proddb.getidfromcode(barcodeData.toString());//recup le nom de l'objet
 
                                 if(!id.equals("unknow"))//si l'objet fait partie de notr BDD Shorter
                                 {

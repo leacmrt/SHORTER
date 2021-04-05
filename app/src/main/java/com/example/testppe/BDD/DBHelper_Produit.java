@@ -73,7 +73,20 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
     }
 
-    public String getid(String toString) {
+    public int getid(String toString) {
+
+        int rv = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "nom=?";
+        String[] whereargs = new String[]{String.valueOf(toString)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getInt(csr.getColumnIndex("id_Produit"));
+        }
+        return rv;
+    }
+
+    public String getidfromcode(String toString) {
 
         String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -85,6 +98,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         }
         return rv;
     }
+
+
 
     public ArrayList<String> getAllProduit() {
 
