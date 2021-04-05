@@ -149,13 +149,20 @@ public class DashboardFragment extends Fragment {
                             {
                                 Toast.makeText(DashboardFragment.this.getContext(), "Youpi"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
 
-                                int id = proddb.getid(barcodeData.toString());
-                                //insertion
-                                mydb.insertrecherche(String.valueOf(id));
-                                Intent intent1 = new Intent(DashboardFragment.this.getActivity(), SelectItem.class);
-                                intent1.putExtra("EXTRA_SESSION_ID", String.valueOf(id));
+                                String id = proddb.getid(barcodeData.toString());//recup le nom de l'objet
 
-                                DashboardFragment.this.getActivity().startActivity(intent1);
+                                if(!id.equals("unknow"))//si l'objet fait partie de notr BDD Shorter
+                                {
+                                    //insertion
+                                    mydb.insertrecherche(id);
+                                    Intent intent1 = new Intent(DashboardFragment.this.getActivity(), SelectItem.class);
+                                    intent1.putExtra("numero", id);
+
+                                    DashboardFragment.this.getActivity().startActivity(intent1);
+                                }else //autrement on fait rien
+                                {
+                                    Toast.makeText(DashboardFragment.this.getContext(), "Objet Inconnu", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     });

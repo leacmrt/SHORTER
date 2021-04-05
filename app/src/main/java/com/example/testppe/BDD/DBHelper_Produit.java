@@ -30,7 +30,7 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Produit(id_Produit integer,nom text, marque text)"
+                "create table Produit(id_Produit integer,nom text, marque text,code text)"
         );
     }
 
@@ -73,15 +73,15 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
     }
 
-    public int getid(String toString) {
+    public String getid(String toString) {
 
-        int rv = 0;
+        String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
-        String whereclause = "nom=?";
+        String whereclause = "code=?";
         String[] whereargs = new String[]{String.valueOf(toString)};
         Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
         if (csr.moveToFirst()) {
-            rv = csr.getInt(csr.getColumnIndex("id_Produit"));
+            rv = csr.getString(csr.getColumnIndex("nom"));
         }
         return rv;
     }
