@@ -37,7 +37,7 @@
                     <TextView
                         android:id="@+id/Poulet"
                         android:layout_width="98dp"
-                        android:layout_height="28dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
@@ -66,7 +66,7 @@
                     <TextView
                         android:id="@+id/Boeuf"
                         android:layout_width="99dp"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
@@ -95,7 +95,7 @@
                     <TextView
                         android:id="@+id/Porc"
                         android:layout_width="99dp"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
@@ -123,7 +123,7 @@
                     <TextView
                         android:id="@+id/Canard"
                         android:layout_width="99dp"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
@@ -152,7 +152,7 @@
                     <TextView
                         android:id="@+id/Agneaux"
                         android:layout_width="99dp"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
@@ -181,7 +181,7 @@
                     <TextView
                         android:id="@+id/Dinde"
                         android:layout_width="99dp"
-                        android:layout_height="25dp"
+                        android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
