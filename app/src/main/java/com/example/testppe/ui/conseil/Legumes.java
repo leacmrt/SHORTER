@@ -110,5 +110,22 @@ public class Legumes  extends AppCompatActivity {
 
     private void legumedesaison()//affihage fruit de saison
     {
+        if(saison.equals("printemps"))
+        {
+            //Asperge choufleure navet carotte ail courgette artichaud
+
+        }
+        else  if(saison.equals("été"))
+        {
+            //concombre poivron beterave celeri rouge-blance choux romanesco
+        }
+        else  if(saison.equals("automne"))
+        {
+            //ail blette brocolis courge fenouil haricot verre laitue frisée céléri blanche endive choux de bruxelle
+        }
+        else if (saison.equals("hiver"))
+        {
+            //celri rave citrouille choux frisé cardon endive mache panet potiron rutabaga topinanbourg épinard
+        }
     }
 }

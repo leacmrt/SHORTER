@@ -103,5 +103,21 @@ public class Fruit  extends AppCompatActivity {
     }
 
     private void fruitdesaison() {
+
+        if(saison.equals("printemps"))
+        {
+        //pomme poire fraise pamplemousse
+        }
+        else  if(saison.equals("été")) {
+        //abricot brugnon cerise prune tomate  pastèque melon
+        }
+        else  if(saison.equals("automne"))
+        {
+        //mure amande sèche pruneaux mirabelle grosseile raison noisette coing
+        }
+        else if (saison.equals("hiver"))
+        {
+        //orange citron clémentine coing mandarine kaki pomme poire chataigne amande sèche 
+        }
     }
 }
