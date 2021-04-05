@@ -64,6 +64,27 @@
         <activity
             android:name=".ui.login.Register">
         </activity>
+
+        <activity
+            android:name=".ui.conseil.Viande">
+        </activity>
+
+        <activity
+            android:name=".ui.conseil.Legumes">
+        </activity>
+
+        <activity
+            android:name=".ui.conseil.Fruit">
+        </activity>
+
+        <activity
+            android:name=".ui.conseil.Produit_Laitier">
+        </activity>
+
+        <activity
+            android:name=".ui.conseil.Recyclage">
+        </activity>
+
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
