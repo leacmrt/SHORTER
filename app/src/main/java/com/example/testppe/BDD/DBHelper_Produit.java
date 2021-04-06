@@ -129,4 +129,16 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         }
         return rv;
     }
+
+    public boolean insertProduit2 (String nom,String marque,String code) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        //Nom,Prenom,Mail,Telephone,Password
+        contentValues.put("Nom",nom);
+        contentValues.put("Marde",marque);
+        contentValues.put("Code",code);
+        db.insert("Produit", null, contentValues);
+        return true;
+    }
+
 }
