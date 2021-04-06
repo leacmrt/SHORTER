@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.testppe.Places.Places;
 import com.example.testppe.ui.conseil.Fruit;
 import com.example.testppe.ui.conseil.Legumes;
 import com.example.testppe.R;
@@ -31,6 +32,7 @@ public class NotificationsFragment extends Fragment {
     Button fruit;
     Button pro_lait;
     Button viande;
+    Button restaurant;
     Date currentTime = Calendar.getInstance().getTime();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class NotificationsFragment extends Fragment {
         fruit = root.findViewById(R.id.button10);
         pro_lait = root.findViewById(R.id.button9);
         viande = root.findViewById(R.id.button8);
-
+        restaurant = root.findViewById(R.id.button7);
 
 
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -57,6 +59,13 @@ public class NotificationsFragment extends Fragment {
         legume.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(NotificationsFragment.this.getActivity(), Legumes.class);
+                startActivity(intent);
+            }
+        });
+
+        restaurant.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(NotificationsFragment.this.getActivity(), Places.class);
                 startActivity(intent);
             }
         });

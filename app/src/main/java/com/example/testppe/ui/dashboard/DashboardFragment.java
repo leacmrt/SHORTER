@@ -50,7 +50,8 @@ public class DashboardFragment extends Fragment {
     private String barcodeData;
     private DBHelper mydb ;
     private DBHelper_Produit proddb;
-
+    AlertDialog dialog;
+    Builder builder;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
@@ -166,13 +167,72 @@ public class DashboardFragment extends Fragment {
                                 }else //autrement on fait rien
                                 {
                                     Toast.makeText(DashboardFragment.this.getContext(), "Objet Inconnu", Toast.LENGTH_SHORT).show();
-                                    Builder builder = new AlertDialog.Builder(DashboardFragment.this.getContext());
+                                    /*builder = new AlertDialog.Builder(DashboardFragment.this.getContext());
                                     builder.setMessage("Objet inconnu, voulez vous l'ajouter ?");
                                     builder.setCancelable(true);
                                     builder.setPositiveButton("OUI", new OkOnClickListener());
                                     builder.setNegativeButton("NON", new CancelOnClickListener());
-                                    AlertDialog dialog = builder.create();
-                                    dialog.show();
+                                    dialog = builder.create();
+                                    dialog.show();*/
+
+                                   /* AlertDialog ad = new AlertDialog.Builder(DashboardFragment.this.getContext())
+                                            .create();
+                                    ad.setCancelable(true);
+                                    //ad.setTitle(title);
+                                    ad.setMessage("Objet inconnu, voulez vous l'ajouter ?");
+                                    ad.setPositiveButton("oui", new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(DashboardFragment.this.getActivity(), AjoutItem.class);
+                                            intent.putExtra("EXTRA_SESSION_ID", barcodeData);
+                                            startActivity(intent);
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+                                    ad.setNegativeButton("NON", new DialogInterface.OnClickListener() {
+
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            DashboardFragment.this.getActivity().finish();
+
+                                        }
+                                    });
+                                    ad.show();*/
+
+                                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                                            DashboardFragment.this.getContext());
+                                    // set title
+                                    alertDialogBuilder.setTitle("AJOUTER");
+                                    alertDialogBuilder.setCancelable(true);
+                                    // set dialog message
+                                    alertDialogBuilder
+                                            .setMessage("Objet inconnu, voulez vous l'ajouter ?")
+                                            .setCancelable(true)
+                                            .setPositiveButton( "Yes",new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog,int id) {
+                                                    try {
+                                                        Intent intent = new Intent(DashboardFragment.this.getActivity(), AjoutItem.class);
+                                                        intent.putExtra("EXTRA_SESSION_ID", barcodeData);
+                                                        startActivity(intent);
+                                                        dialog.dismiss();
+                                                        //so some work
+                                                    } catch (Exception e) {
+                                                        //Exception
+                                                    }
+                                                }
+                                            })
+                                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog,int id) {
+                                                    //do something if you need
+                                                    dialog.cancel();
+                                                }
+                                            });
+
+                                    // create alert dialog
+                                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                                    // show it
+                                    alertDialog.show();
                                 }
                             }
                         }
@@ -181,10 +241,14 @@ public class DashboardFragment extends Fragment {
                 }
             }
         });
+
+
     }
     private final class CancelOnClickListener implements
             DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialog, int which) {
+
+            dialog.dismiss();
             Intent intent = new Intent(DashboardFragment.this.getActivity(), AjoutItem.class);
             intent.putExtra("EXTRA_SESSION_ID", barcodeData);
             startActivity(intent);
@@ -195,6 +259,7 @@ public class DashboardFragment extends Fragment {
             DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialog, int which) {
           //  AlertExampleActivity.this.finish();
+            dialog.dismiss();
             DashboardFragment.this.getActivity().finish();
         }
     }
