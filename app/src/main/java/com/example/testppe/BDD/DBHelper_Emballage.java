@@ -28,8 +28,7 @@ public class DBHelper_Emballage extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Emballage" +
-                        "(id_materiaux integer, id_produit integer)"
+                "create table Emballage" +"(id_materiaux integer, id_produit integer)"
         );
     }
 

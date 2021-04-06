@@ -28,8 +28,7 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Composition" +
-                        "(id_Produit integer,id_Ingredient integer,Quantite integer)"
+                "create table Composition" +"(id_Produit integer,id_Ingredient integer,Quantite integer)"
         );
     }
 

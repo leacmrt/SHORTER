@@ -32,8 +32,7 @@ public class DBHelper_Avis<Date> extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Avis" +
-                        "(id integer,avis text)"
+                "create table Avis" +"(id integer,avis text)"
         );
     }
 

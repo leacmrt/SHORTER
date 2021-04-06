@@ -28,8 +28,7 @@ public class DBHelper_Transport extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Transport" +
-                        "(id integer,nom text)"
+                "create table Transport" +"(id integer,nom text)"
         );
     }
 

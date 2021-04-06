@@ -28,8 +28,7 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Ingredient" +
-                        "(id integer, nom text, provenance text, eau text)"
+                "create table Ingredient" +"(id integer, nom text, provenance text, eau text)"
         );
     }
 

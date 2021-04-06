@@ -144,14 +144,14 @@ public class DashboardFragment extends Fragment {
 
                             }
 
-                            Toast.makeText(DashboardFragment.this.getContext(), "Barcode"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(DashboardFragment.this.getContext(), "Barcode"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
                             if(!barcodeData.toString().equals("Barcode Text"))//si un barcode a été reconnu
                             {
-                                Toast.makeText(DashboardFragment.this.getContext(), "Youpi"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(DashboardFragment.this.getContext(), "Youpi"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
 
                                 String id = proddb.getidfromcode(barcodeData.toString());//recup le nom de l'objet
 
-                                if(!id.equals("unknow"))//si l'objet fait partie de notr BDD Shorter
+                                if(!id.equals("unknown"))//si l'objet fait partie de notr BDD Shorter
                                 {
                                     //insertion
                                     mydb.insertrecherche(id);

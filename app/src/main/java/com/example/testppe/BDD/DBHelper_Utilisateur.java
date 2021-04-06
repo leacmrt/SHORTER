@@ -32,8 +32,7 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Utilisateur" +
-                        "(id integer primary key,Nom text,Prenom int,Mail text,Telephone text,Password text, Localisation text )"
+                "create table Utilisateur" + "(id integer primary key,Nom text,Prenom int,Mail text,Telephone text,Password text, Localisation text )"
         );
     }
 
