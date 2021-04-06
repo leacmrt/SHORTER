@@ -1,6 +1,8 @@
 package com.example.testppe.ui.dashboard;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
@@ -14,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.app.AlertDialog.Builder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -22,6 +24,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.testppe.AjoutItem;
+import com.example.testppe.Avis;
 import com.example.testppe.BDD.DBHelper;
 import com.example.testppe.BDD.DBHelper_Produit;
 import com.example.testppe.R;
@@ -162,6 +166,13 @@ public class DashboardFragment extends Fragment {
                                 }else //autrement on fait rien
                                 {
                                     Toast.makeText(DashboardFragment.this.getContext(), "Objet Inconnu", Toast.LENGTH_SHORT).show();
+                                    Builder builder = new AlertDialog.Builder(DashboardFragment.this.getContext());
+                                    builder.setMessage("Objet inconnu, voulez vous l'ajouter ?");
+                                    builder.setCancelable(true);
+                                    builder.setPositiveButton("OUI", new OkOnClickListener());
+                                    builder.setNegativeButton("NON", new CancelOnClickListener());
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
                                 }
                             }
                         }
@@ -170,6 +181,22 @@ public class DashboardFragment extends Fragment {
                 }
             }
         });
+    }
+    private final class CancelOnClickListener implements
+            DialogInterface.OnClickListener {
+        public void onClick(DialogInterface dialog, int which) {
+            Intent intent = new Intent(DashboardFragment.this.getActivity(), AjoutItem.class);
+            intent.putExtra("EXTRA_SESSION_ID", barcodeData);
+            startActivity(intent);
+        }
+    }
+
+    private final class OkOnClickListener implements
+            DialogInterface.OnClickListener {
+        public void onClick(DialogInterface dialog, int which) {
+          //  AlertExampleActivity.this.finish();
+            DashboardFragment.this.getActivity().finish();
+        }
     }
 
 

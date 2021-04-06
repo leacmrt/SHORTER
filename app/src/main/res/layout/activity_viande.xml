@@ -60,12 +60,25 @@
 
                     <TextView
                         android:id="@+id/textView29"
-                        android:layout_width="131dp"
-                        android:layout_height="41dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
-                        android:text="TextView"
+                        android:text="Cage : 16,9 kg kilo d'eq-CO2"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Poulet" />
+
+                    <TextView
+                        android:id="@+id/textView36"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="36dp"
+                        android:text="Bio : 8,33 kg kilo d'eq-CO2"
                         android:textColor="@color/black"
                         android:textSize="18dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -102,16 +115,28 @@
 
                     <TextView
                         android:id="@+id/textView30"
-                        android:layout_width="133dp"
-                        android:layout_height="44dp"
+                        android:layout_width="163dp"
+                        android:layout_height="28dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="4dp"
+                        android:text="34,5 kilo d’eq-CO2 "
                         android:textColor="@color/black"
-                        android:text="13.1 kilo d’eq-CO2 "
                         android:textSize="18dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Boeuf" />
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="1dp"
+                        android:textColor="@color/black"
+                        android:text="13.000 L d'eau => 1 kg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView30" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -144,12 +169,12 @@
 
                     <TextView
                         android:id="@+id/textView31"
-                        android:layout_width="116dp"
-                        android:layout_height="47dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="TextView"
+                        android:text="7,88 kg kilo d’eq-CO2"
                         android:textColor="@color/black"
                         android:textSize="18dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -186,12 +211,12 @@
 
                     <TextView
                         android:id="@+id/textView32"
-                        android:layout_width="119dp"
-                        android:layout_height="47dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="TextView"
+                        android:text="4,09 kg kilo d’eq-CO2"
                         android:textColor="@color/black"
                         android:textSize="18dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -228,12 +253,12 @@
 
                     <TextView
                         android:id="@+id/textView33"
-                        android:layout_width="125dp"
-                        android:layout_height="35dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="TextView"
+                        android:text="39 kg kilo d’eq-CO2"
                         android:textColor="@color/black"
                         android:textSize="18dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -270,12 +295,12 @@
 
                     <TextView
                         android:id="@+id/textView34"
-                        android:layout_width="128dp"
-                        android:layout_height="42dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
-                        android:text="TextView"
+                        android:text="4,69 kg kilo d’eq-CO2"
                         android:textColor="@color/black"
                         android:textSize="18dp"
                         app:layout_constraintStart_toStartOf="parent"
