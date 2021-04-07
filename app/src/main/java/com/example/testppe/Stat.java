@@ -1,12 +1,20 @@
 package com.example.testppe;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,6 +22,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.testppe.BDD.DBHelper;
+import com.example.testppe.BDD.DBHelper_Composition;
+import com.example.testppe.BDD.DBHelper_Emballage;
+import com.example.testppe.BDD.DBHelper_Materiaux;
 import com.example.testppe.BDD.DBHelper_Produit;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -33,6 +44,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.example.testppe.ui.notifications.NotificationsViewModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Stat extends Fragment {
@@ -40,26 +52,51 @@ public class Stat extends Fragment {
     private NotificationsViewModel notificationsViewModel;
     DBHelper mabdd;
     DBHelper_Produit prodb;
+    DBHelper_Emballage emdb;
+    DBHelper_Materiaux madb;
+    @SuppressLint("NewApi")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         ArrayList<String> nom = new ArrayList<>();
         ArrayList<String> info = new ArrayList<>();
+        ArrayList<String> id = new ArrayList<>();
+        ArrayList<String> info2 = new ArrayList<>();
+       ArrayList<Float> test = new ArrayList<>();
 
+        String [] la = {"A","B","C","D","E"};
+        int [] jsp;
         View root = inflater.inflate(R.layout.fragment_stat, container, false);
         PieChart chart = root.findViewById(R.id.chart);
         mabdd = new DBHelper(Stat.this.getContext());
         prodb = new DBHelper_Produit(Stat.this.getContext());
+        emdb = new DBHelper_Emballage(Stat.this.getContext());
+        madb = new DBHelper_Materiaux(Stat.this.getContext());
 
         nom = mabdd.getnote();
+        id = mabdd.getAllMatch2();
+        for (int o = 0; o < nom.size(); o++)
+        {
 
-        for (int o = 0; o < nom.size(); o++) {
-            String note1 = prodb.getNote(nom.get(o));
+           String note1 = prodb.getNote(nom.get(o));
+
             info.add(note1);
+
+        }
+
+
+
+        for (int o = 0; o < id.size(); o++)
+        {
+            int note1 = emdb.getIdmateriaux(id.get(o));
+            String mat = madb.getMateriaux(note1);
+            info2.add(mat);
             System.out.println(note1);
         }
 
-        PieChart pieChart = root.findViewById(R.id.chart);
+        countFrequencies(info);
+        PieChart pieChart = root.findViewById(R.id.chart); //notes
+        PieChart pieChart1 = root.findViewById(R.id.chart1);//recyclage
 
         pieChart.setUsePercentValues(true);
         pieChart.setExtraOffsets(25, 5, 25, 0);
@@ -81,26 +118,36 @@ public class Stat extends Fragment {
 
         List<PieEntry> yvalues = new ArrayList<>();
 
-        for(int u =0;u<info.size();u++)
-        {
-        yvalues.add(new PieEntry(10f, info.get(u)));
+        Set<String> st = new HashSet<String>(info);
+        for (String s : st)
+        {   yvalues.add(new PieEntry(10f,s));
+            System.out.println(s + ": " + Collections.frequency(info, s));
         }
+
+      /*  for(int u =0;u<info.size();u++)
+        {
+            yvalues.add(new PieEntry(10f, info.get(u)));
+        }*/
 
         PieDataSet dataSet = new PieDataSet(yvalues, "");
         dataSet.setSliceSpace(3f);
 
         ArrayList<String> xVals = new ArrayList<>();
-        for(int u =0;u<info.size();u++)
+        for (String s : st)
         {
-            xVals.add(info.get(u));
+            xVals.add(s);
         }
+
+
 
 
 
         PieData data = new PieData(dataSet);
 
         data.setValueFormatter(new PercentFormatter());
+        data.getYValueSum();
         // data.setValueFormatter(new DefaultValueFormatter(0));
+
 
         pieChart.setData(data);
 
@@ -136,7 +183,178 @@ public class Stat extends Fragment {
         dataSet.setValueLinePart1Length(1.2f);
         dataSet.setValueLinePart2Length(0.4f);
 
+
+
+       /* mChart.setDrawHoleEnabled(true);
+        mChart.setHoleColor(Color.WHITE);
+        mChart.setHoleRadius(65f);
+        mChart.setTransparentCircleRadius(65f);
+        mChart.setDrawCenterText(true);
+        mChart.setRotationAngle(270);
+        mChart.setRotationEnabled(false);
+        mChart.setHighlightPerTapEnabled(true);
+
+        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+        //String[] zoneName = mContext.getResources().getStringArray(R.array.hrm_zone_array);
+        for (int i = 0; i < info.size(); i++)
+        {
+            if (data[i] > 0)
+            {
+                entries.add(new PieEntry((float) (data[i]), zoneName[i]));
+            }
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "");
+        dataSet.setSliceSpace(2f);
+        dataSet.setSelectionShift(2f);
+
+        int[] zoneColors = {
+                Color.rgb(164, 164, 164),
+                Color.rgb(54, 155, 227),
+                Color.rgb(42, 160, 84),
+                Color.rgb(242, 171, 21),
+                Color.rgb(217, 41, 61)
+        };
+
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+        for (int i = 0; i < data.length; i++)
+        {
+            if (data[i] > 0)
+            {
+                colors.add(zoneColors[i]);
+            }
+        }
+        dataSet.setColors(colors);
+
+        PieData pieData = new PieData(dataSet);
+        pieData.setValueFormatter(new MyValueFormatter());
+        pieData.setValueTextSize(10f);
+        pieData.setValueTextColor(Color.WHITE);
+        pieData.setValueTypeface(Typeface.DEFAULT_BOLD);
+
+        mChart.setData(pieData);
+        mChart.highlightValues(null);
+        mChart.invalidate();
+        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+
+        Legend l = mChart.getLegend();
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setXEntrySpace(7f);
+        l.setYEntrySpace(0f);
+        l.setYOffset(0f);
+        mChart.getLegend().setWordWrapEnabled(true);
+        mChart.setDrawEntryLabels(false);*/
+
+        //2
+
+       // pieChart1.setUsePercentValues(true);
+        pieChart1.setExtraOffsets(25, 5, 25, 0);
+
+
+        pieChart1.setDrawHoleEnabled(true);
+        pieChart1.setHoleColor(Color.WHITE);
+
+        Legend l1 = pieChart1.getLegend();
+        l1.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l1.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l1.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l1.setDrawInside(true);
+        l1.setXEntrySpace(7f);
+        l1.setYEntrySpace(0f);
+        l1.setYOffset(30f);
+
+        pieChart1.setEntryLabelColor(Color.BLACK);
+
+        List<PieEntry> yvalues1 = new ArrayList<>();
+
+       /* for(int u =0;u<info2.size();u++)
+        {
+            yvalues1.add(new PieEntry(10f, info2.get(u)));
+        }
+
+        PieDataSet dataSet2 = new PieDataSet(yvalues1, "");
+        dataSet2.setSliceSpace(3f);
+
+        ArrayList<String> xVals1 = new ArrayList<>();
+        for(int u =0;u<info2.size();u++)
+        {
+            xVals1.add(info2.get(u));
+        }*/
+
+        Set<String> st1 = new HashSet<String>(info2);
+        for (String s : st1)
+        {   yvalues1.add(new PieEntry(Collections.frequency(info2, s),s));
+            System.out.println(s + ": " + Collections.frequency(info2, s));
+        }
+
+      /*  for(int u =0;u<info.size();u++)
+        {
+            yvalues.add(new PieEntry(10f, info.get(u)));
+        }*/
+
+        PieDataSet dataSet1 = new PieDataSet(yvalues1, "");
+        dataSet.setSliceSpace(3f);
+
+        ArrayList<String> xVals1 = new ArrayList<>();
+        for (String s : st)
+        {
+            xVals1.add(s);
+        }
+
+
+
+
+        PieData data1 = new PieData(dataSet1);
+
+        data1.setValueFormatter(new PercentFormatter());
+        // data.setValueFormatter(new DefaultValueFormatter(0));
+
+        pieChart1.setData(data1);
+
+        pieChart1.setEntryLabelTextSize(13);
+
+        int[] colors1 = {Color.RED, Color.rgb(255, 128, 0), Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA};
+        dataSet1.setColors(ColorTemplate.createColors(colors1));
+
+        // dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        // dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        // dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+        // dataSet.setColors(ColorTemplate.PASTEL_COLORS);
+
+        Description d1 = new Description();
+        d1.setTextSize(16);
+        d1.setPosition(65, 50);
+
+        d1.setTextAlign(Paint.Align.LEFT);
+        d1.setText("Vos types d'emballages");
+        pieChart1.setDescription(d1);
+
+
+        pieChart1.setTransparentCircleRadius(30f);
+        pieChart1.setHoleRadius(30f);
+
+        data1.setValueTextSize(13f);
+        data1.setValueTextColor(Color.DKGRAY);
+
+        pieChart1.animateXY(1500, 1500);
+
+        dataSet1.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        dataSet1.setValueLinePart1OffsetPercentage(80.f);
+        dataSet1.setValueLinePart1Length(1.2f);
+        dataSet1.setValueLinePart2Length(0.4f);
+
         //pieChart.setOnChartValueSelectedListener(this);
         return root;
     }
+    public static void countFrequencies(ArrayList<String> list)
+    {
+
+        // hash set is created and elements of
+        // arraylist are insertd into it
+        Set<String> st = new HashSet<String>(list);
+        for (String s : st)
+            System.out.println(s + ": " + Collections.frequency(list, s));
+    }
+
 }

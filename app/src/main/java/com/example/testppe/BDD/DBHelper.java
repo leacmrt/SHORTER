@@ -115,6 +115,24 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         return array_list;
     }
 
+    public ArrayList<String> getAllMatch2() {
+
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res =  db.rawQuery( "select id from Historique", null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+
+            array_list.add(res.getString(res.getColumnIndex("id")));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
 
     public String getNom(int position) {
         String rv = "unknown";

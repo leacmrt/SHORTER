@@ -44,46 +44,33 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
                     Intent intent1 = new Intent(p, SelectItem.class);
 
                     intent1.putExtra("EXTRA_SESSION_ID", textView1.getText().toString());
-                    intent1.putExtra("Nom", textView1.getText().toString());
+                    intent1.putExtra("numero", textView1.getText().toString());
                     p.startActivity(intent1);
 
                 }
             });
         }
     }
-    public ExampleAdapter(List<String> exampleList, Activity a) {
-        this.exampleList = exampleList;
+    public ExampleAdapter(List<String> exampleList, Activity a)
+    {
+        this.exampleList = exampleList; //list des éléments présents dans la BDD
         this.p=a;
         mydb = new DBHelper(a.getBaseContext());
-        exampleListFull = new ArrayList<>(exampleList);
-        for(int i=0;i<exampleListFull.size();i++)
-        {System.out.println(exampleList.get(i));}
+        exampleListFull = new ArrayList<>(exampleList); //remplie
+            for(int i=0;i<exampleListFull.size();i++)
+            {System.out.println(exampleList.get(i));}
     }
     @NonNull
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item,
                 parent, false);
-
-      /*  v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent1 = new Intent(p, SelectItem.class);
-                intent1.putExtra("EXTRA_SESSION_ID", "coucou");
-
-                p.startActivity(intent1);
-
-            }
-        });*/
         return new ExampleViewHolder(v);
     }
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder holder, int position) {
-        String currentItem = exampleList.get(position);
+        String currentItem = exampleList.get(position);//item selectionné
         holder.textView1.setText(currentItem);
-
-
 
     }
     @Override
@@ -94,12 +81,12 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     public Filter getFilter() {
         return exampleFilter;
     }
-    private Filter exampleFilter = new Filter() {
+    private Filter exampleFilter = new Filter() {//recherche dans la liste en fonction des lettres rentrées dans la barre de recherche
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<String> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(exampleListFull);
+                filteredList.addAll(exampleListFull); //ajout dans resultat dans la liste d'affichage
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for (String item : exampleListFull) {
