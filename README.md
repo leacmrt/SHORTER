@@ -32,6 +32,7 @@ Aujourd’hui, nous consommons en six mois seulement ce que la Terre produit en 
 
 </p>
 
+<br><br>
 ## HOW TO DOWLOAD OUR PROJECT ? 
 
 * **Installation - Clone this github**
@@ -51,3 +52,7 @@ In Android Studio  : File => Open Project [Your Chosen Repository] / Shorter / A
  <br>
  <b>Nous contacter : <a href="SHORTER.ECE@gmail.com">SHORTER.ECE@gmail.com</a> </b>
 </p>
+
+
+
+<footer> Ines BELLOIR Matthieu BOYER Camille BRUANT Léa COMMARET Romance DAMIER Alexandre GOMMEZ</footer>
