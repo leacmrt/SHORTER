@@ -102,7 +102,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="32dp"
-            android:text="TextView"
+            android:text=""
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/textView16"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -207,7 +207,7 @@
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="76dp"
                 android:layout_marginRight="76dp"
-                android:text="TextView"
+                android:text=""
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textVieweau" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -243,7 +243,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginLeft="28dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
+            android:text=""
             app:layout_constraintStart_toEndOf="@+id/textView19"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

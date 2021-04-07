@@ -32,7 +32,7 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Utilisateur" + "(id integer primary key,Nom text,Prenom int,Mail text,Telephone text,Password text, Localisation text )"
+                "create table Utilisateur" + "(id integer primary key,Nom text,Prenom int,Mail text,Telephone text,Password text, Localisation text, Budget integer )"
         );
     }
 
@@ -147,5 +147,14 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
         contentValues.put("Localisation", pays);
         db.update("Utilisateur", contentValues, "id = ? ", new String[] { id_util } );
         return true;
+    }
+
+    public boolean ajouterbudget(int idutil,int budget) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Budget", budget);
+        db.update("Utilisateur", contentValues, "id = ? ", new String[] { String.valueOf(idutil) } );
+        return true;
+
     }
 }

@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string-array name="places">
+        <item>restaurant</item>
+        <item>shopping_mall</item>
+        <item>atm</item>
+    </string-array>
+
+</resources>

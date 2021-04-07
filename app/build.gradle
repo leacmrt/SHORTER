@@ -4,6 +4,7 @@ plugins {
 
 android {
     compileSdkVersion 30
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.example.testppe"
@@ -31,6 +32,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'androidx.cardview:cardview:1.0.0'
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -52,4 +54,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-gcm:15.0.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
     implementation 'com.google.android.gms:play-services-base:17.1.0'
+  // <---! implementation 'com.google.android.gms:play-services-places:10.2.1'-->
+    implementation 'io.nlopez.smartlocation:library:3.3.1'
+    implementation  'com.google.code.gson:gson:2.7'
+    implementation  'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation  'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation  'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation  'com.squareup.okhttp3:okhttp:3.4.1'
+
+
 }

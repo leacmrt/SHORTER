@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DBHelper_Produit extends SQLiteOpenHelper {
 
@@ -30,7 +31,7 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table Produit(id_Produit integer,nom text, marque text,code text)"
+                "create table Produit(id_Produit integer,nom text, marque text,code text,Prix integer)"
         );
     }
 
@@ -141,4 +142,19 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         return true;
     }
 
+    public ArrayList<String> getProBud(Integer valueOf) {
+        ArrayList<String> map = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "Prix<?";
+        String[] whereargs = new String[]{String.valueOf(valueOf)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        while (csr.moveToFirst())
+        {
+           int id = csr.getInt(csr.getColumnIndex("id_Produit"));
+           String nom = csr.getString(csr.getColumnIndex("nom"));
+           map.add(nom);
+           csr.moveToNext();
+        }
+        return map;
+    }
 }
