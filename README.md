@@ -19,7 +19,7 @@ Aujourd’hui, nous consommons en six mois seulement ce que la Terre produit en 
 
 
 
-<p align="center"> Fonctionnalitée </p>
+ <p align="center" style="text-decoration:underline" >  Fonctionnalitée   </p>
 <br>
 
  * Scanner / rechercher  différents produits alimentaires. Nous lui fournirons alors toutes les informations relatives à l’impact environnemental et présentes dans notre base de données. Elles pourront en plus être résumées sous la forme d’une note, sur 100 par exemple.
