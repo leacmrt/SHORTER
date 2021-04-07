@@ -54,5 +54,4 @@ In Android Studio  : File => Open Project [Your Chosen Repository] / Shorter / A
 </p>
 
 <br><br><br>
-<p align="center">
-<footer> Ines BELLOIR Matthieu BOYER Camille BRUANT Léa COMMARET Romance DAMIER Alexandre GOMMEZ</footer> </p>
+ <h4> <p align="center"> Ines BELLOIR Matthieu BOYER Camille BRUANT Léa COMMARET Romance DAMIER Alexandre GOMMEZ  </p> </h4>
