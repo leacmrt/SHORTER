@@ -53,6 +53,6 @@ In Android Studio  : File => Open Project [Your Chosen Repository] / Shorter / A
  <b>Nous contacter : <a href="SHORTER.ECE@gmail.com">SHORTER.ECE@gmail.com</a> </b>
 </p>
 
-
-
-<footer> Ines BELLOIR Matthieu BOYER Camille BRUANT Léa COMMARET Romance DAMIER Alexandre GOMMEZ</footer>
+<br><br><br>
+<p align="center">
+<footer> Ines BELLOIR Matthieu BOYER Camille BRUANT Léa COMMARET Romance DAMIER Alexandre GOMMEZ</footer> </p>
