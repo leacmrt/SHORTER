@@ -5,23 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/chart1"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="136dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="376dp"
+        android:layout_width="320dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="300dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

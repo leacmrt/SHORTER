@@ -37,7 +37,7 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Historique" +
-                        "(id integer primary key,Recherche text,Date int )"
+                        "(id integer primary key,Recherche text,Date int)"
         );
     }
 
@@ -134,12 +134,12 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor res =  db.rawQuery( "select Note from Historique", null );
+        Cursor res =  db.rawQuery( "select Recherche from Historique", null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
 
-            array_list.add(res.getString(res.getColumnIndex("Note")));
+            array_list.add(res.getString(res.getColumnIndex("Recherche")));
             res.moveToNext();
         }
         return array_list;

@@ -142,19 +142,37 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         return true;
     }
 
-    public ArrayList<String> getProBud(Integer valueOf) {
+    public ArrayList<String> getProBud(Integer valueOf)
+    {
         ArrayList<String> map = new ArrayList<>();
+        map.add("chou");
         SQLiteDatabase db = this.getWritableDatabase();
-        String whereclause = "Prix<?";
+        String whereclause = "Prix < ?";
         String[] whereargs = new String[]{String.valueOf(valueOf)};
         Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
-        while (csr.moveToFirst())
-        {
+        csr.moveToFirst();
+
+        while(csr.isAfterLast() == false)
+        { System.out.println("la");
            int id = csr.getInt(csr.getColumnIndex("id_Produit"));
            String nom = csr.getString(csr.getColumnIndex("nom"));
            map.add(nom);
            csr.moveToNext();
+
         }
         return map;
     }
+
+    public String getNote(String s) {
+        String rv = "E";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereclause = "nom=?";
+        String[] whereargs = new String[]{String.valueOf(s)};
+        Cursor csr = db.query(PROJET_TABLE_NAME,null,whereclause,whereargs,null,null,null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndex("Note"));
+        }
+        return rv;
+    }
 }
+
