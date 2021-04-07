@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.testppe.Places.Places;
 import com.example.testppe.nearbyplaces.MainActivity;
+import com.example.testppe.ui.conseil.Budget;
 import com.example.testppe.ui.conseil.Fruit;
 import com.example.testppe.ui.conseil.Legumes;
 import com.example.testppe.R;
@@ -69,8 +70,8 @@ public class NotificationsFragment extends Fragment {
 
         budget.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               // Intent intent = new Intent(NotificationsFragment.this.getActivity(), Legumes.class);
-                //startActivity(intent);
+                Intent intent1 = new Intent(NotificationsFragment.this.getActivity(), Budget.class);
+                 startActivity(intent1);
             }
         });
 

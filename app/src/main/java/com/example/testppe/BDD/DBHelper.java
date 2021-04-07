@@ -128,4 +128,20 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         return rv;
     }
 
+    public ArrayList<String> getnote() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res =  db.rawQuery( "select Note from Historique", null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+
+            array_list.add(res.getString(res.getColumnIndex("Note")));
+            res.moveToNext();
+        }
+        return array_list;
+    }
 }

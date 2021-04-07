@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.testppe.BDD.DBHelper;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -30,17 +31,19 @@ import java.util.ArrayList;
 public class Stat extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
-
+    DBHelper mabdd;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        
+        ArrayList<String > note = new ArrayList<>();
 
         View root = inflater.inflate(R.layout.fragment_stat, container, false);
         PieChart chart = root.findViewById(R.id.chart);
         BarChart chart1 = (BarChart) root.findViewById(R.id.chart1);
-
+        mabdd = new DBHelper(Stat.this.getContext());
+        note = mabdd.getnote();
         BarData data = new BarData(getDataSet());
         chart1.setData(data);
-
         chart1.animateXY(2000, 2000);
         chart1.invalidate();
         chart.setUsePercentValues(true);
