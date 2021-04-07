@@ -19,7 +19,7 @@ Aujourd’hui, nous consommons en six mois seulement ce que la Terre produit en 
 
 
 
- <p align="center" style="text-decoration:underline" >  Fonctionnalitée   </p>
+ <p align="center" style="text-decoration:underline" >  Fonctionnalitées   </p>
 <br>
 
  * Scanner / rechercher  différents produits alimentaires. Nous lui fournirons alors toutes les informations relatives à l’impact environnemental et présentes dans notre base de données. Elles pourront en plus être résumées sous la forme d’une note, sur 100 par exemple.
@@ -54,4 +54,7 @@ In Android Studio  : File => Open Project [Your Chosen Repository] / Shorter / A
 </p>
 
 <br><br><br>
- <h4> <p align="center"> Ines BELLOIR Matthieu BOYER Camille BRUANT Léa COMMARET Romance DAMIER Alexandre GOMMEZ  </p> </h4>
+ <h4> <p align="center"> Ines BELLOIR    Matthieu BOYER    Camille BRUANT    Léa COMMARET    Romance DAMIER    Alexandre GOMMEZ  </p> </h4>
+
+
+2020 - 2021
