@@ -47,6 +47,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+//classe création + affichage des statistiques utilisateurs
 public class Stat extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
@@ -62,25 +64,28 @@ public class Stat extends Fragment {
         ArrayList<String> info = new ArrayList<>();
         ArrayList<String> id = new ArrayList<>();
         ArrayList<String> info2 = new ArrayList<>();
-       ArrayList<Float> test = new ArrayList<>();
+        ArrayList<Float> test = new ArrayList<>();
 
         String [] la = {"A","B","C","D","E"};
         int [] jsp;
         View root = inflater.inflate(R.layout.fragment_stat, container, false);
         PieChart chart = root.findViewById(R.id.chart);
+
+       //initialisation des BDD
         mabdd = new DBHelper(Stat.this.getContext());
         prodb = new DBHelper_Produit(Stat.this.getContext());
         emdb = new DBHelper_Emballage(Stat.this.getContext());
         madb = new DBHelper_Materiaux(Stat.this.getContext());
 
-        nom = mabdd.getnote();
-        id = mabdd.getAllMatch2();
+        nom = mabdd.getnote(); //recupération de toutes les nom
+        id = mabdd.getAllMatch2(); //recupération de tous les ID
+        //des recherches faires par un utilisateur
+
         for (int o = 0; o < nom.size(); o++)
         {
 
-           String note1 = prodb.getNote(nom.get(o));
-
-            info.add(note1);
+           String note1 = prodb.getNote(nom.get(o));//pour chaque item rechercher, on trouve la note
+            info.add(note1);//on la store
 
         }
 
@@ -88,7 +93,7 @@ public class Stat extends Fragment {
 
         for (int o = 0; o < id.size(); o++)
         {
-            int note1 = emdb.getIdmateriaux(id.get(o));
+            int note1 = emdb.getIdmateriaux(id.get(o));//pareil pour les matériaux
             String mat = madb.getMateriaux(note1);
             info2.add(mat);
             System.out.println(note1);
@@ -119,20 +124,16 @@ public class Stat extends Fragment {
         List<PieEntry> yvalues = new ArrayList<>();
 
         Set<String> st = new HashSet<String>(info);
-        for (String s : st)
+        for (String s : st) //entrée des données pour les notes
         {   yvalues.add(new PieEntry(10f,s));
             System.out.println(s + ": " + Collections.frequency(info, s));
         }
 
-      /*  for(int u =0;u<info.size();u++)
-        {
-            yvalues.add(new PieEntry(10f, info.get(u)));
-        }*/
 
         PieDataSet dataSet = new PieDataSet(yvalues, "");
         dataSet.setSliceSpace(3f);
 
-        ArrayList<String> xVals = new ArrayList<>();
+        ArrayList<String> xVals = new ArrayList<>(); //entrée écoscore
         for (String s : st)
         {
             xVals.add(s);
@@ -140,9 +141,7 @@ public class Stat extends Fragment {
 
 
 
-
-
-        PieData data = new PieData(dataSet);
+        PieData data = new PieData(dataSet);//la même chose pour les types d'emballages/recyclages
 
         data.setValueFormatter(new PercentFormatter());
         data.getYValueSum();
@@ -185,70 +184,6 @@ public class Stat extends Fragment {
 
 
 
-       /* mChart.setDrawHoleEnabled(true);
-        mChart.setHoleColor(Color.WHITE);
-        mChart.setHoleRadius(65f);
-        mChart.setTransparentCircleRadius(65f);
-        mChart.setDrawCenterText(true);
-        mChart.setRotationAngle(270);
-        mChart.setRotationEnabled(false);
-        mChart.setHighlightPerTapEnabled(true);
-
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
-        //String[] zoneName = mContext.getResources().getStringArray(R.array.hrm_zone_array);
-        for (int i = 0; i < info.size(); i++)
-        {
-            if (data[i] > 0)
-            {
-                entries.add(new PieEntry((float) (data[i]), zoneName[i]));
-            }
-        }
-
-        PieDataSet dataSet = new PieDataSet(entries, "");
-        dataSet.setSliceSpace(2f);
-        dataSet.setSelectionShift(2f);
-
-        int[] zoneColors = {
-                Color.rgb(164, 164, 164),
-                Color.rgb(54, 155, 227),
-                Color.rgb(42, 160, 84),
-                Color.rgb(242, 171, 21),
-                Color.rgb(217, 41, 61)
-        };
-
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-        for (int i = 0; i < data.length; i++)
-        {
-            if (data[i] > 0)
-            {
-                colors.add(zoneColors[i]);
-            }
-        }
-        dataSet.setColors(colors);
-
-        PieData pieData = new PieData(dataSet);
-        pieData.setValueFormatter(new MyValueFormatter());
-        pieData.setValueTextSize(10f);
-        pieData.setValueTextColor(Color.WHITE);
-        pieData.setValueTypeface(Typeface.DEFAULT_BOLD);
-
-        mChart.setData(pieData);
-        mChart.highlightValues(null);
-        mChart.invalidate();
-        mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
-
-        Legend l = mChart.getLegend();
-        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setXEntrySpace(7f);
-        l.setYEntrySpace(0f);
-        l.setYOffset(0f);
-        mChart.getLegend().setWordWrapEnabled(true);
-        mChart.setDrawEntryLabels(false);*/
-
-        //2
-
-       // pieChart1.setUsePercentValues(true);
         pieChart1.setExtraOffsets(25, 5, 25, 0);
 
 
@@ -268,19 +203,7 @@ public class Stat extends Fragment {
 
         List<PieEntry> yvalues1 = new ArrayList<>();
 
-       /* for(int u =0;u<info2.size();u++)
-        {
-            yvalues1.add(new PieEntry(10f, info2.get(u)));
-        }
 
-        PieDataSet dataSet2 = new PieDataSet(yvalues1, "");
-        dataSet2.setSliceSpace(3f);
-
-        ArrayList<String> xVals1 = new ArrayList<>();
-        for(int u =0;u<info2.size();u++)
-        {
-            xVals1.add(info2.get(u));
-        }*/
 
         Set<String> st1 = new HashSet<String>(info2);
         for (String s : st1)
@@ -288,10 +211,6 @@ public class Stat extends Fragment {
             System.out.println(s + ": " + Collections.frequency(info2, s));
         }
 
-      /*  for(int u =0;u<info.size();u++)
-        {
-            yvalues.add(new PieEntry(10f, info.get(u)));
-        }*/
 
         PieDataSet dataSet1 = new PieDataSet(yvalues1, "");
         dataSet.setSliceSpace(3f);
@@ -317,10 +236,6 @@ public class Stat extends Fragment {
         int[] colors1 = {Color.RED, Color.rgb(255, 128, 0), Color.YELLOW, Color.GREEN, Color.CYAN, Color.BLUE, Color.MAGENTA};
         dataSet1.setColors(ColorTemplate.createColors(colors1));
 
-        // dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-        // dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        // dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-        // dataSet.setColors(ColorTemplate.PASTEL_COLORS);
 
         Description d1 = new Description();
         d1.setTextSize(16);

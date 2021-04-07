@@ -13,6 +13,7 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
+//Classe accès à la BDD SQLITE Historique des utlisateurs
 public class DBHelper<Date> extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -25,7 +26,8 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
     SQLiteDatabase myDataBase;
     private HashMap hp;
 
-    public DBHelper(Context context) {
+    public DBHelper(Context context)//constructeur
+    {
         super(context, DATABASE_NAME , null, 4);
         myContext = context;
         myDataBase = this.getReadableDatabase();
@@ -33,7 +35,7 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) { //création si besoin
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Historique" +
@@ -42,7 +44,8 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) //upgrade si besoin
+    {
         // TODO Auto-generated method stub
 
             if(newVersion>oldVersion)
@@ -52,7 +55,8 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertrecherche (String re) {
+    public boolean insertrecherche (String re) //insertion d'une recherche dans l'historique
+    {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -62,7 +66,8 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         return true;
     }
 
-    public Cursor getData(int id) {
+    public Cursor getData(int id)
+    {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from Histoique where id="+id+"", null );
         return res;
@@ -74,26 +79,9 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public boolean updateMatch (int id ,String name1, String name2, String score, String strength,String date) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name1);
-        contentValues.put("name2", name2);
-        contentValues.put("score", score);
-        contentValues.put("strength", strength);
-        contentValues.put("date", date);
-        db.update("Projet", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
-        return true;
-    }
 
-    public Integer deleteMatch (Integer id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("Projet",
-                "id = ? ",
-                new String[] { Integer.toString(id) });
-    }
-
-    public ArrayList<String> getAllMatch() {
+    public ArrayList<String> getAllMatch() //recupère tout les noms + dates de recherches de la BDD
+    {
 
         ArrayList<String> array_list = new ArrayList<String>();
 
@@ -115,7 +103,8 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         return array_list;
     }
 
-    public ArrayList<String> getAllMatch2() {
+    public ArrayList<String> getAllMatch2() //recupère tout les ID des recherches
+    {
 
         ArrayList<String> array_list = new ArrayList<String>();
 
@@ -134,7 +123,8 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
     }
 
 
-    public String getNom(int position) {
+    public String getNom(int position) //getter 1 nom
+    {
         String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id=?";
@@ -146,7 +136,8 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         return rv;
     }
 
-    public ArrayList<String> getnote() {
+    public ArrayList<String> getnote()//getter de toutes les notes ( ECO SCORE)
+    {
         ArrayList<String> array_list = new ArrayList<String>();
 
         //hp = new HashMap();

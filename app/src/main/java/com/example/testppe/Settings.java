@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
+//classe pour les paramètres
 public class Settings extends AppCompatActivity {
 
     Context thiscontext;
@@ -67,14 +68,14 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v)
             {
                 Toast.makeText(Settings.this, String.valueOf(la),Toast.LENGTH_LONG).show();
-                if(Landscape.isChecked())
+                if(Landscape.isChecked())//passage en mode paysage
                 {
 
                     Landscape.setTextColor(Color.GREEN);
                     Landscape.setText("ON");
                     Settings.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-                }else
+                }else //passage en mode portrait
                 {
                     Landscape.setTextColor(Color.BLUE);
                     Landscape.setText("OFF");
@@ -110,7 +111,7 @@ public class Settings extends AppCompatActivity {
                 if(Mode.isChecked())
                 {
 
-                    Mode.setTextColor(Color.GREEN);
+                    Mode.setTextColor(Color.GREEN);//passage en mode nuit
                     Mode.setText("ON");
                     AppCompatDelegate
                             .setDefaultNightMode(
@@ -118,7 +119,7 @@ public class Settings extends AppCompatActivity {
                                             .MODE_NIGHT_YES);
                     // FragmentSetting.this.getActivity().recreate();
 
-                }else if(!Mode.isChecked())
+                }else if(!Mode.isChecked())//passage en mode nuit
                 {
                     Mode.setTextColor(Color.BLUE);
                     Mode.setText("OFF");
@@ -156,7 +157,7 @@ public class Settings extends AppCompatActivity {
             {
 
 
-                if(Lang.isChecked())
+                if(Lang.isChecked())//mode anglais
                 {
 
 
@@ -167,7 +168,7 @@ public class Settings extends AppCompatActivity {
                     Settings.this.recreate();
                     // LocaleHelper.setLocale(la.getContext(),"fr");
 
-                }else if(!Lang.isChecked())
+                }else if(!Lang.isChecked())//mode français
                 {
                     Lang.setTextColor(Color.BLUE);
                     Lang.setText("OFF");
