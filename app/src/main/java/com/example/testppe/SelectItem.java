@@ -1,10 +1,12 @@
 package com.example.testppe;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class SelectItem extends AppCompatActivity {
     TextView marque;
     TextView eau;
     TextView origine;
+    ImageView note ;
     //création des BDD
     private DBHelper_Emballage emdb;
     private DBHelper_Materiaux madb;
@@ -73,7 +76,7 @@ public class SelectItem extends AppCompatActivity {
         marque = findViewById(R.id.textViewmarque);
         eau = findViewById(R.id.textVieweau);
         origine = findViewById(R.id.textVieworigine);
-
+        note = findViewById(R.id.imageView10);
         Affiche.setText(nom);
 
         recuperation_elements(sessionId);
@@ -90,6 +93,33 @@ public class SelectItem extends AppCompatActivity {
 
 
         int produitId = prodb.getid(nom);
+        String note1 = prodb.getNote(nom);
+
+        if(note1.equals("A"))
+        {
+            //Drawable image = SelectItem.this.ImageOperations(SelectItem.this.getApplicationContext(),"a.png");
+            ImageView imgView = new ImageView(SelectItem.this.getApplicationContext());
+            note.setImageResource(R.drawable.a);
+          //  note.setImageDrawable(image);
+        }
+        if(note1.equals("B"))
+        {
+            note.setImageResource(R.drawable.b);
+        }
+        if(note1.equals("C"))
+        {
+            note.setImageResource(R.drawable.c);
+        }
+        if(note1.equals("D"))
+        {
+          //  note.setImageBitmap("a.pgn");
+            note.setImageResource(R.drawable.d);
+        }
+        if(note1.equals("E"))
+        {
+            //note.setImageBitmap("a.pgn");
+            note.setImageResource(R.drawable.e);
+        }
 
         //traitement marque
         String marqu = prodb.getmarque(produitId);
@@ -101,6 +131,7 @@ public class SelectItem extends AppCompatActivity {
         String emballagefin = madb.getMateriaux(emballage);
         System.out.println(" nom "+emballagefin);
 
+        //afficahge en fonction du type d'emballage
             if(emballagefin.equals("Carton"))
             {
                 recyclage.setText("Emballage "+emballagefin+"\n Poubelle Jaune");
@@ -133,6 +164,7 @@ public class SelectItem extends AppCompatActivity {
                 defaut.setText("Venant de  "+provenance+"\n Par : "+typetransport);
             }
 
+            //affichage des alternatives en fonction de la provenance
               if(!provenance.equals("France"))
               {
                   alternative.setText("Achetez chez un producteur local ");
@@ -149,7 +181,7 @@ public class SelectItem extends AppCompatActivity {
         String ingredient = inDB.getIngredient(idproduitcompo);
         String provenanceIn= inDB.getpro(idproduitcompo);
         String ea = inDB.geteau(idproduitcompo);
-
+        if(ea.equals("unknown")) ea="";
         eau.setText("Consomme: "+ea+" \n L d'eau");
 
 
