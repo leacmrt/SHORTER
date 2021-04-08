@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#A8DC6B"
+    android:background="@drawable/fond_login_vierge"
     android:layout_height="match_parent">
 
 
@@ -27,7 +27,7 @@
         android:layout_width="298dp"
         android:layout_height="386dp"
         android:layout_marginTop="12dp"
-        android:background="@color/back"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -229,7 +229,7 @@
         android:layout_width="303dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
-        android:background="@color/back"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
@@ -265,6 +265,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="BACK"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#74CC5C"
+        app:cornerRadius="10dp"
+        app:strokeColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
