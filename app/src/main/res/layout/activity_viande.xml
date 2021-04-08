@@ -5,17 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bacon">
+    android:background="@drawable/viande">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="310dp"
         android:layout_height="603dp"
         android:layout_marginTop="24dp"
+        android:background="#DAFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent">
 
 
@@ -54,9 +54,9 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="36dp"
                         android:layout_marginRight="36dp"
+                        android:background="@drawable/poulet"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/poulet" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView29"
@@ -109,9 +109,9 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="40dp"
                         android:layout_marginRight="40dp"
+                        android:background="@drawable/vache"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/vache"  />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView30"
@@ -133,8 +133,8 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="1dp"
-                        android:textColor="@color/black"
                         android:text="13.000 L d'eau => 1 kg"
+                        android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView30" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -163,9 +163,9 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="40dp"
                         android:layout_marginRight="40dp"
+                        android:background="@drawable/cochon"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/cochon"  />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView31"
@@ -247,9 +247,9 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="44dp"
                         android:layout_marginRight="44dp"
+                        android:background="@drawable/agneau"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/agneau"  />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView33"
@@ -289,9 +289,9 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="44dp"
                         android:layout_marginRight="44dp"
+                        android:background="@drawable/dinde"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/dinde"  />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView34"
@@ -308,8 +308,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -320,6 +318,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Back"
+        android:textColor="#000000"
+        app:backgroundTint="#FFFFFF"
+        app:cornerRadius="10dp"
+        app:strokeColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
