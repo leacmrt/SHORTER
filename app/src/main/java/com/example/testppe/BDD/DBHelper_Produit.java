@@ -185,5 +185,13 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         }
         return rv;
     }
+
+    public int deleteProduitN(String nom) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("Produit",
+                "Recherche= ? ",
+                new String[] {nom  });
+    }
+
 }
 

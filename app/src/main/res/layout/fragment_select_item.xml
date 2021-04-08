@@ -236,27 +236,30 @@
 
         <TextView
             android:id="@+id/textView19"
-            android:layout_width="114dp"
+            android:layout_width="80dp"
             android:layout_height="31dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
             android:text="OPTIONS"
             android:textColor="@color/black"
             android:textSize="17dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="129dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginTop="16dp"
-            android:text=""
-            app:layout_constraintStart_toEndOf="@+id/textView19"
+        <Button
+            android:id="@+id/buttonsup"
+            android:layout_width="155dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:text="Supprimer de l'historique "
+            android:textSize="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button

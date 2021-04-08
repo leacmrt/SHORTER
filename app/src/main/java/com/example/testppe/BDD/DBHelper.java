@@ -153,4 +153,11 @@ public class DBHelper<Date> extends SQLiteOpenHelper {
         }
         return array_list;
     }
+
+    public int deleteProduitN(String nom) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("Historique",
+                "Recherche= ? ",
+                new String[] {nom });
+    }
 }

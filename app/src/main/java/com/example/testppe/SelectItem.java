@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.testppe.BDD.DBHelper;
 import com.example.testppe.BDD.DBHelper_Composition;
 import com.example.testppe.BDD.DBHelper_Emballage;
 import com.example.testppe.BDD.DBHelper_Ingredient;
@@ -47,6 +48,7 @@ public class SelectItem extends AppCompatActivity {
     private DBHelper_Transport trandb;
     private DBHelper_Composition codb;
     private DBHelper_Ingredient inDB;
+    private DBHelper HiDB;
 
     private SQL_Produit BDD;
     @Override
@@ -62,10 +64,11 @@ public class SelectItem extends AppCompatActivity {
         trandb = new DBHelper_Transport(SelectItem.this.getBaseContext());
         codb = new DBHelper_Composition(SelectItem.this.getBaseContext());
         inDB = new DBHelper_Ingredient(SelectItem.this.getBaseContext());
-
+        HiDB = new DBHelper(SelectItem.this.getBaseContext());
         String sessionId = getIntent().getStringExtra("EXTRA_SESSION_ID");
         nom = getIntent().getStringExtra("numero");
 
+        Button supprimer = findViewById(R.id.buttonsup);
         Button back = findViewById(R.id.buttonback); //initialisation des widget
         TextView Affiche = findViewById(R.id.textView6);
         recyclage = findViewById(R.id.textView17);
@@ -85,6 +88,13 @@ public class SelectItem extends AppCompatActivity {
             public void onClick(View v) { //retour en arrière
                 Toast.makeText(SelectItem.this.getApplicationContext(), "Back to history", Toast.LENGTH_LONG).show();
                 finish();
+            }
+        });
+
+        supprimer.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v) { //retour en arrière
+                HiDB.deleteProduitN(nom);
             }
         });
 
@@ -148,7 +158,14 @@ public class SelectItem extends AppCompatActivity {
             if(emballagefin.equals("Metal"))
             {
                 recyclage.setText("Emballage "+emballagefin+"\n Poubelle Jaune");
+
             }
+            if(emballagefin.equals("Papier"))
+            {
+                recyclage.setText("Emballage "+emballagefin+"\n Poubelle Jaune");
+            }
+
+
 
             //Traitement transport
         int idproduittransport = protdb.getIdtransport(String.valueOf(produitId));
