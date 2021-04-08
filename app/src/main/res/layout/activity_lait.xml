@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lait_back">
+    android:background="@drawable/fond_login_vierge">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
@@ -66,7 +66,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:textColor="@color/black"
-                        android:text="Production d’un litre : 1,63 kg CO2 dans l’atmosphère"
+                        android:text="Production d’un litre : 1,63 kg CO2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Poulet" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -82,9 +82,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:textSize="22dp"
+                        android:textSize="18dp"
+                        android:layout_marginBotton="16dp"
+                        android:layout_marginTop="16dp"
                         android:textAlignment="center"
-                        android:text="La consommation de boissons végétales permet de réduire d’un tiers, voire de moitié notre empreinte écologique"
+                        android:text="La consommation de boissons végétales permet de réduire d’un tiers, voire de moitié notre empreinte écologique !"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,7 +129,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:textColor="@color/black"
-                        android:text="Production d’un litre : 0,94 kg CO2 dans l’atmosphère"
+                        android:text="Production d’un litre : 0,94 kg CO2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Boeuf" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -168,7 +170,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:textColor="@color/black"
-                        android:text="Production d’un litre : 0,70 kg CO2 dans l’atmosphère"
+                        android:text="Production d’un litre : 0,70 kg CO2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Canard" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -209,7 +211,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/black"
-                        android:text="Production d’un litre : 0,76 kg CO2 dans l’atmosphère"
+                        android:text="Production d’un litre : 0,76 kg CO2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Agneaux" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -250,7 +252,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:textColor="@color/black"
-                        android:text="Production d’un litre : 0,81 kg CO2 dans l’atmosphère"
+                        android:text="Production d’un litre : 0,81 kg CO2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Dinde" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -290,7 +292,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="12dp"
                         android:textColor="@color/black"
-                        android:text="Production d’un litre : 0,84 kg CO2 dans l’atmosphère"
+                        android:text="Production d’un litre : 0,84 kg CO2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lal" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -329,7 +331,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"
-                        android:text="Production d’un litre : 0,80 kg CO2 dans l’atmosphère"
+                        android:text="Production d’un litre : 0,80 kg CO2"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lala" />
@@ -346,6 +348,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Back"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#74CC5C"
+        app:cornerRadius="10dp"
+        app:strokeColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
