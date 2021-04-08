@@ -54,7 +54,7 @@
             <ListView
                 android:id="@+id/list"
                 android:layout_width="278dp"
-                android:layout_height="440dp"
+                android:layout_height="420dp"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,14 +94,14 @@
         android:id="@+id/buttonback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:text="Back"
         android:textColor="#FFFFFF"
         app:backgroundTint="#74CC5C"
         app:cornerRadius="10dp"
-        app:strokeColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3"
+        app:strokeColor="#00FFFFFF" />
 </androidx.constraintlayout.widget.ConstraintLayout>
