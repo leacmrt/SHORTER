@@ -145,6 +145,10 @@ public class SelectItem extends AppCompatActivity {
             {
                 recyclage.setText("Emballage "+emballagefin+"\n Poubelle Grise");
             }
+            if(emballagefin.equals("Metal"))
+            {
+                recyclage.setText("Emballage "+emballagefin+"\n Poubelle Jaune");
+            }
 
             //Traitement transport
         int idproduittransport = protdb.getIdtransport(String.valueOf(produitId));

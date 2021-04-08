@@ -140,11 +140,13 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
 
     public boolean insertProduit2 (String nom,String marque,String code) //insertion d'un produit par un utilisateur si il n'est pas encore présent
     {
+        int o  = this.numberOfRows();
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //Nom,Prenom,Mail,Telephone,Password
+        contentValues.put("id_Produit",o+1);
         contentValues.put("Nom",nom);
-        contentValues.put("Marde",marque);
+        contentValues.put("Marque",marque);
         contentValues.put("Code",code);
         db.insert("Produit", null, contentValues);
         return true;

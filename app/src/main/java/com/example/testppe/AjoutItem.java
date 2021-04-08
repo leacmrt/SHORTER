@@ -71,7 +71,7 @@ public class AjoutItem extends AppCompatActivity
 
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, spinnerArray);
+                this, android.R.layout.simple_spinner_item, spinnerArray2);
 
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner sItems2 = (Spinner) findViewById(R.id.spinner2);
@@ -89,6 +89,7 @@ public class AjoutItem extends AppCompatActivity
 
                    //insertion d'un nouveau produit
                    prodb.insertProduit2(Nom,Marque,barcodeDATA);
+                   finish();
 
                    
                }

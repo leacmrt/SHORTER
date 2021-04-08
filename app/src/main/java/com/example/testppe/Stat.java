@@ -96,7 +96,7 @@ public class Stat extends Fragment {
             int note1 = emdb.getIdmateriaux(id.get(o));//pareil pour les matériaux
             String mat = madb.getMateriaux(note1);
             info2.add(mat);
-            System.out.println(note1);
+            //System.out.println("l"+note1);
         }
 
         countFrequencies(info);
@@ -125,7 +125,7 @@ public class Stat extends Fragment {
 
         Set<String> st = new HashSet<String>(info);
         for (String s : st) //entrée des données pour les notes
-        {   yvalues.add(new PieEntry(10f,s));
+        {   yvalues.add(new PieEntry(Collections.frequency(info, s),s));
             System.out.println(s + ": " + Collections.frequency(info, s));
         }
 
@@ -144,7 +144,7 @@ public class Stat extends Fragment {
         PieData data = new PieData(dataSet);//la même chose pour les types d'emballages/recyclages
 
         data.setValueFormatter(new PercentFormatter());
-        data.getYValueSum();
+        //data.getYValueSum();
         // data.setValueFormatter(new DefaultValueFormatter(0));
 
 

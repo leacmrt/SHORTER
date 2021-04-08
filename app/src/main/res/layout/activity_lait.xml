@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textSize="18dp"
-                        android:layout_marginBotton="16dp"
+                        android:layout_marginBottom="16dp"
                         android:layout_marginTop="16dp"
                         android:textAlignment="center"
                         android:text="La consommation de boissons végétales permet de réduire d’un tiers, voire de moitié notre empreinte écologique !"
