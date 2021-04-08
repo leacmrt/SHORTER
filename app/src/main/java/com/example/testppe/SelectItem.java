@@ -80,8 +80,9 @@ public class SelectItem extends AppCompatActivity {
         Affiche.setText(nom);
 
         recuperation_elements(sessionId);
-        back.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        back.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v) { //retour en arrière
                 Toast.makeText(SelectItem.this.getApplicationContext(), "Back to history", Toast.LENGTH_LONG).show();
                 finish();
             }

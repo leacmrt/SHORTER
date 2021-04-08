@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashMap;
 
+//classe acces BDD SQLLITE Produit Transport
 public class DBHelper_ProduitTransport  extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -17,7 +18,8 @@ public class DBHelper_ProduitTransport  extends SQLiteOpenHelper {
     SQLiteDatabase myDataBase;
     private HashMap hp;
 
-    public DBHelper_ProduitTransport (Context context) {
+    public DBHelper_ProduitTransport (Context context) //constructeur
+    {
 
         super(context, DATABASE_NAME , null, 4);
         myContext = context;
@@ -71,7 +73,8 @@ public class DBHelper_ProduitTransport  extends SQLiteOpenHelper {
                 new String[] { Integer.toString(idP) });
     }
 
-    public int getIdtransport(String valueOf) {
+    public int getIdtransport(String valueOf) //recup id transport en fonction de l'id d'un produit
+    {
         int rv = 0;
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id_produit=?";
@@ -83,7 +86,8 @@ public class DBHelper_ProduitTransport  extends SQLiteOpenHelper {
         return rv;
     }
 
-    public String getProvenance(String valueOf) {
+    public String getProvenance(String valueOf)// recup provenance d'un produit en fonction de son ID
+    {
         String rv = "Unknown";
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id_produit=?";

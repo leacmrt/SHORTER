@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+//Classe accès BDD SQLLITE produit
 public class DBHelper_Produit extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -20,7 +21,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
     SQLiteDatabase myDataBase;
     private HashMap hp;
 
-    public DBHelper_Produit(Context context) {
+    public DBHelper_Produit(Context context) //constructeur
+    {
 
         super(context, DATABASE_NAME , null, 4);
         myContext = context;
@@ -28,7 +30,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) //creation de BDD si ce n'est pas encore fait
+    {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Produit(id_Produit integer,nom text, marque text,code text,Prix REAL, Note text )"
@@ -74,7 +77,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
     }
 
-    public int getid(String toString) {
+    public int getid(String toString)//recupert l'id d'un produit en fonction de son nom
+    {
 
         int rv = 0;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -87,7 +91,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         return rv;
     }
 
-    public String getidfromcode(String toString) {
+    public String getidfromcode(String toString) //recupert l'id d'un prduit en fonction de son code barre
+    {
 
         String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -102,7 +107,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
 
 
 
-    public ArrayList<String> getAllProduit() {
+    public ArrayList<String> getAllProduit() //tout les produit de la bdd SHORTER
+    {
 
         ArrayList<String> array_list = new ArrayList<String>();
 
@@ -119,7 +125,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         return array_list;
     }
 
-    public String getmarque(int produitId) {
+    public String getmarque(int produitId)//marque du produit en fonction de l'id
+    {
         String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id_Produit=?";
@@ -131,7 +138,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         return rv;
     }
 
-    public boolean insertProduit2 (String nom,String marque,String code) {
+    public boolean insertProduit2 (String nom,String marque,String code) //insertion d'un produit par un utilisateur si il n'est pas encore présent
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //Nom,Prenom,Mail,Telephone,Password
@@ -142,7 +150,7 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         return true;
     }
 
-    public ArrayList<String> getProBud(Integer valueOf)
+    public ArrayList<String> getProBud(Integer valueOf) //tout les produits en dessous du budget encoyé par l'utilisateur
     {
         ArrayList<String> map = new ArrayList<>();
         map.add("chou");
@@ -163,7 +171,8 @@ public class DBHelper_Produit extends SQLiteOpenHelper {
         return map;
     }
 
-    public String getNote(String s) {
+    public String getNote(String s)//note produit en fonction de son nom
+    {
         String rv = "E";
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "nom=?";

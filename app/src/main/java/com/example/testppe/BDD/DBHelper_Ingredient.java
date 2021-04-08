@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashMap;
 
+//classe accès BDD SQLITE ingrédient
 public class DBHelper_Ingredient extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -17,7 +18,8 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
     SQLiteDatabase myDataBase;
     private HashMap hp;
 
-    public DBHelper_Ingredient(Context context) {
+    public DBHelper_Ingredient(Context context) //constructeur
+    {
 
         super(context, DATABASE_NAME , null, 4);
         myContext = context;
@@ -25,7 +27,8 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) //creation si pas encore fait
+    {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Ingredient" +"(id integer, nom text, provenance text, eau text)"
@@ -33,7 +36,8 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) //upgrade si il le faut
+    {
         // TODO Auto-generated method stub
 
         if(newVersion>oldVersion)
@@ -71,7 +75,8 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
     }
 
-    public String getIngredient(int idproduitcompo) {
+    public String getIngredient(int idproduitcompo) //recupère le nom d'un ingrédient en fonction de son ID
+    {
         String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id=?";
@@ -83,7 +88,8 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
         return rv;
     }
 
-    public String getpro(int idproduitcompo) {
+    public String getpro(int idproduitcompo) //recupère la provenance d'un ingrédient en fonction de son ID
+    {
         String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id=?";
@@ -95,7 +101,8 @@ public class DBHelper_Ingredient extends SQLiteOpenHelper {
         return rv;
     }
 
-    public String geteau(int idproduitcompo) {
+    public String geteau(int idproduitcompo)//récupert le nombre de litre d'eau issus de la production d'un produit en fonction de son id
+    {
         String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id=?";

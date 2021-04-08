@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import java.text.DateFormat;
 import java.util.ArrayList;
 
+
+//Classe accès BDD SQLLITE utilisateur
 public class DBHelper_Utilisateur extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -23,13 +25,15 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
 
 
 
-    public DBHelper_Utilisateur(@Nullable Context context) {
+    public DBHelper_Utilisateur(@Nullable Context context) //constructeur
+    {
        super(context, DATABASE_NAME , null, 4);
     }
 
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) //creation si pas encore fait
+    {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Utilisateur" + "(id integer primary key,Nom text,Prenom int,Mail text,Telephone text,Password text, Localisation text, Budget integer )"
@@ -37,15 +41,17 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) //upgrade si il le faut
+    {
         // TODO Auto-generated method stub
         db.execSQL("DROP TABLE IF EXISTS Utilisateur");
         onCreate(db);
     }
 
-    public boolean insertUtilisateur (String nom,String prenom,String mail,String phone,String password) {
+    public boolean insertUtilisateur (String nom,String prenom,String mail,String phone,String password)
+    //insertation d'un utilisateur à la création d'un compte
+    {
         SQLiteDatabase db = this.getWritableDatabase();
-        System.out.println("on est la");
         ContentValues contentValues = new ContentValues();
         //Nom,Prenom,Mail,Telephone,Password
         contentValues.put("Nom",nom);
@@ -77,7 +83,8 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
         return rendu;
     }
 
-    public int getid(String mail) {
+    public int getid(String mail)//id d'un utilisateur en fonction de son mail
+    {
         SQLiteDatabase db = this.getReadableDatabase();
         int rendu = 0;
         Cursor res =  db.rawQuery( "select id from Utilisateur where Mail = ?", new String[] {mail});
@@ -140,7 +147,8 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
         return array_list;
     }
 
-    public Boolean addLocal(String id_util, String pays) {//ajout localisation dans la BDD
+    public Boolean addLocal(String id_util, String pays) //ajouter localisation
+    {//ajout localisation dans la BDD
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -149,7 +157,8 @@ public class DBHelper_Utilisateur extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean ajouterbudget(int idutil,int budget) {
+    public boolean ajouterbudget(int idutil,int budget) //ajouter budget 
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Budget", budget);

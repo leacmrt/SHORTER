@@ -37,6 +37,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
+//classe scanner de code barre
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
@@ -57,9 +58,12 @@ public class DashboardFragment extends Fragment {
         dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        //final TextView textView = root.findViewById(R.id.text_dashboard);
+
+
+        //initialisation des BDD
         mydb = new DBHelper(DashboardFragment.this.getContext());
         proddb = new DBHelper_Produit(DashboardFragment.this.getContext());
+
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -79,7 +83,7 @@ public class DashboardFragment extends Fragment {
 
     private void initialiseDetectorsAndSources() {
 
-        //Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
+
 
         barcodeDetector = new BarcodeDetector.Builder(this.getContext())
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
@@ -135,7 +139,7 @@ public class DashboardFragment extends Fragment {
 
                         @Override
                         public void run() {
-
+                            //dans une nouvelle thread on recupert les données trouver sur le barre code
                             if (barcodes.valueAt(0).email != null) {
                                 barcodeText.removeCallbacks(null);
                                 barcodeData = barcodes.valueAt(0).email.address;
@@ -149,10 +153,8 @@ public class DashboardFragment extends Fragment {
 
                             }
 
-                            //Toast.makeText(DashboardFragment.this.getContext(), "Barcode"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
                             if(!barcodeData.toString().equals("Barcode Text"))//si un barcode a été reconnu
                             {
-                               // Toast.makeText(DashboardFragment.this.getContext(), "Youpi"+barcodeData.toString(), Toast.LENGTH_SHORT).show();
 
                                 String id = proddb.getidfromcode(barcodeData.toString());//recup le nom de l'objet
 
@@ -167,37 +169,7 @@ public class DashboardFragment extends Fragment {
                                 }else //autrement on fait rien
                                 {
                                     Toast.makeText(DashboardFragment.this.getContext(), "Objet Inconnu", Toast.LENGTH_SHORT).show();
-                                    /*builder = new AlertDialog.Builder(DashboardFragment.this.getContext());
-                                    builder.setMessage("Objet inconnu, voulez vous l'ajouter ?");
-                                    builder.setCancelable(true);
-                                    builder.setPositiveButton("OUI", new OkOnClickListener());
-                                    builder.setNegativeButton("NON", new CancelOnClickListener());
-                                    dialog = builder.create();
-                                    dialog.show();*/
 
-                                   /* AlertDialog ad = new AlertDialog.Builder(DashboardFragment.this.getContext())
-                                            .create();
-                                    ad.setCancelable(true);
-                                    //ad.setTitle(title);
-                                    ad.setMessage("Objet inconnu, voulez vous l'ajouter ?");
-                                    ad.setPositiveButton("oui", new DialogInterface.OnClickListener() {
-
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent = new Intent(DashboardFragment.this.getActivity(), AjoutItem.class);
-                                            intent.putExtra("EXTRA_SESSION_ID", barcodeData);
-                                            startActivity(intent);
-                                            dialog.dismiss();
-                                        }
-                                    });
-
-                                    ad.setNegativeButton("NON", new DialogInterface.OnClickListener() {
-
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            DashboardFragment.this.getActivity().finish();
-
-                                        }
-                                    });
-                                    ad.show();*/
 
                                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                             DashboardFragment.this.getContext());
@@ -211,10 +183,11 @@ public class DashboardFragment extends Fragment {
                                             .setPositiveButton( "Yes",new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog,int id) {
                                                     try {
+                                                        //si l'utilisateur veut l'ajouter ouverture de la page ajouter
                                                         Intent intent = new Intent(DashboardFragment.this.getActivity(), AjoutItem.class);
-                                                        intent.putExtra("EXTRA_SESSION_ID", barcodeData);
-                                                        startActivity(intent);
-                                                        dialog.dismiss();
+                                                        intent.putExtra("EXTRA_SESSION_ID", barcodeData);//on envoie le barecode
+                                                        startActivity(intent);//lance l'activité
+                                                        dialog.dismiss();//ferme la fenetre de dialogue
                                                         //so some work
                                                     } catch (Exception e) {
                                                         //Exception
@@ -223,7 +196,7 @@ public class DashboardFragment extends Fragment {
                                             })
                                             .setNegativeButton("No",new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog,int id) {
-                                                    //do something if you need
+                                                    //si bouton non : fermeture de la fenetre de dialogue
                                                     dialog.cancel();
                                                 }
                                             });

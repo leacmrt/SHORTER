@@ -27,6 +27,7 @@ import com.example.testppe.ui.conseil.Viande;
 import java.util.Calendar;
 import java.util.Date;
 
+//classe de choix de conseils
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
@@ -62,6 +63,7 @@ public class NotificationsFragment extends Fragment {
 
         //ouverture des pages pour les conseils
         legume.setOnClickListener(new View.OnClickListener() {
+            //ouvre activitée légumes
             public void onClick(View v) {
                 Intent intent = new Intent(NotificationsFragment.this.getActivity(), Legumes.class);
                 startActivity(intent);
@@ -69,6 +71,7 @@ public class NotificationsFragment extends Fragment {
         });
 
         budget.setOnClickListener(new View.OnClickListener() {
+            //ouvre activité budget
             public void onClick(View v) {
                 Intent intent1 = new Intent(NotificationsFragment.this.getActivity(), Budget.class);
                  startActivity(intent1);
@@ -77,6 +80,7 @@ public class NotificationsFragment extends Fragment {
 
 
         restaurant.setOnClickListener(new View.OnClickListener() {
+            //ouvre activité restaurants
             public void onClick(View v) {
                 Intent intent = new Intent(NotificationsFragment.this.getActivity(), MainActivity.class);
                 startActivity(intent);
@@ -84,6 +88,7 @@ public class NotificationsFragment extends Fragment {
         });
 
         fruit.setOnClickListener(new View.OnClickListener() {
+            //ouvre activité fruit
             public void onClick(View v) {
                 Intent intent = new Intent(NotificationsFragment.this.getActivity(), Fruit.class);
                 startActivity(intent);
@@ -91,6 +96,7 @@ public class NotificationsFragment extends Fragment {
         });
 
         pro_lait.setOnClickListener(new View.OnClickListener() {
+            //ouvre activité produit lait
             public void onClick(View v) {
                 Intent intent = new Intent(NotificationsFragment.this.getActivity(), Produit_Laitier.class);
                 startActivity(intent);
@@ -98,6 +104,7 @@ public class NotificationsFragment extends Fragment {
         });
 
         viande.setOnClickListener(new View.OnClickListener() {
+            //ouvre activité viande
             public void onClick(View v) {
                 Intent intent = new Intent(NotificationsFragment.this.getActivity(), Viande.class);
                 startActivity(intent);

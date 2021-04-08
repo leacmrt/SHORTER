@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashMap;
 
+//classe composition SQLLITE de composition
 public class DBHelper_Composition extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -17,7 +18,8 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
     SQLiteDatabase myDataBase;
     private HashMap hp;
 
-    public DBHelper_Composition(Context context) {
+    public DBHelper_Composition(Context context) //construction
+    {
 
         super(context, DATABASE_NAME , null, 4);
         myContext = context;
@@ -25,7 +27,8 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)//creation si elle n'existe pas
+    {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Composition" +"(id_Produit integer,id_Ingredient integer,Quantite integer)"
@@ -33,7 +36,8 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) //upgrade si elle n'existe pas
+    {
         // TODO Auto-generated method stub
 
         if(newVersion>oldVersion)
@@ -84,7 +88,8 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
         return rv;
     }
 
-    public int getIdCompo(String valueOf) {
+    public int getIdCompo(String valueOf)//recupère l'id de l'ingredient pour un produit en fonction de son id
+    {
         int rv = 0;
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id_Produit=?";
@@ -96,7 +101,8 @@ public class DBHelper_Composition extends SQLiteOpenHelper {
         return rv;
     }
 
-    public int getquantite(String valueOf) {
+    public int getquantite(String valueOf) // recupère de la quantité du produit en fonction de son ID
+    {
         int rv = 0;
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id_Produit=?";

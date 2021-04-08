@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashMap;
 
+//classe accès BDD SQLLITE Transport
+
 public class DBHelper_Transport extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -17,7 +19,8 @@ public class DBHelper_Transport extends SQLiteOpenHelper {
     SQLiteDatabase myDataBase;
     private HashMap hp;
 
-    public DBHelper_Transport(Context context) {
+    public DBHelper_Transport(Context context)//constructeur
+    {
 
         super(context, DATABASE_NAME , null, 4);
         myContext = context;
@@ -25,7 +28,8 @@ public class DBHelper_Transport extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)//creation si pas encore fait
+    {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Transport" +"(id integer,nom text)"
@@ -71,7 +75,8 @@ public class DBHelper_Transport extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
     }
 
-    public String getTransport(int idproduittransport) {
+    public String getTransport(int idproduittransport)//nomp d'un transport en fonction de son id
+    {
         String rv = "unknown";
         SQLiteDatabase db = this.getWritableDatabase();
         String whereclause = "id=?";

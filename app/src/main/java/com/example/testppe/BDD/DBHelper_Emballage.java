@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashMap;
 
+//classe accès BDD SQLLITE Emballage
 public class DBHelper_Emballage extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -17,7 +18,8 @@ public class DBHelper_Emballage extends SQLiteOpenHelper {
     SQLiteDatabase myDataBase;
     private HashMap hp;
 
-    public DBHelper_Emballage(Context context) {
+    public DBHelper_Emballage(Context context) //constructeur
+    {
 
         super(context, DATABASE_NAME , null, 4);
         myContext = context;
@@ -25,7 +27,8 @@ public class DBHelper_Emballage extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)//creation si elle n'existe pas
+    {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Emballage" +"(id_materiaux integer, id_produit integer)"
@@ -33,7 +36,8 @@ public class DBHelper_Emballage extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)//upgrade si il le faut
+    {
         // TODO Auto-generated method stub
 
         if(newVersion>oldVersion)
@@ -71,7 +75,8 @@ public class DBHelper_Emballage extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
     }
 
-    public int getIdmateriaux(String sessionId) {
+    public int getIdmateriaux(String sessionId)//recupère l'id d'un matériau d'un produit en fonction de son id
+    {
 
         int rv = 0;
         SQLiteDatabase db = this.getWritableDatabase();

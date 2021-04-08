@@ -24,6 +24,7 @@ import com.example.testppe.Settings;
 
 import java.util.ArrayList;
 
+//classe principale et historique
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
@@ -33,36 +34,39 @@ public class HomeFragment extends Fragment {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        //final TextView textView = root.findViewById(R.id.text_home);
+
+        //initialisation de la BDD historique
         mydb=new DBHelper(HomeFragment.this.getContext());
+
+        //recup tous les produits de l'historique de cet utilisateur
         tmp = mydb.getAllMatch();
+
         ListView lv = (ListView) root.findViewById(R.id.list);
 
-        String List1 []= {"farine avoine","petits lus","avocats (brésil)","tomate","carotte","lait"};
         ArrayAdapter adapter1 = new ArrayAdapter<>(HomeFragment.this.getActivity(), R.layout.listview, R.id.textView, tmp);
         lv.setAdapter(adapter1);
 
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                //textView.setText(s);
                 lv.setAdapter(adapter1);
 
             }
         });
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //en cliquant sur un produit, on ouvre la page d'information de celui-ci
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String la =tmp.get(position);
-                System.out.println("ps"+position);
-                String nom = mydb.getNom(position+1);
-                System.out.println("nopm"+nom);
-                Toast.makeText(HomeFragment.this.getActivity(),"test",Toast.LENGTH_LONG).show();
-                Intent intent1 = new Intent(HomeFragment.this.getActivity(), SelectItem.class);
-                intent1.putExtra("EXTRA_SESSION_ID", la);
-                intent1.putExtra("numero", nom);
-                startActivity(intent1);
+
+                    String la =tmp.get(position);
+
+                    String nom = mydb.getNom(position+1); //recup nom du produit
+
+                    Intent intent1 = new Intent(HomeFragment.this.getActivity(), SelectItem.class); //page selecitem
+                    intent1.putExtra("EXTRA_SESSION_ID", la);
+                    intent1.putExtra("numero", nom); //envois le nom comme information supplementaire à la page
+                    startActivity(intent1);//ouverture page
 
             }
         });

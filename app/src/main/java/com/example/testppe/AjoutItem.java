@@ -14,6 +14,7 @@ import com.example.testppe.BDD.DBHelper_Produit;
 import java.util.ArrayList;
 import java.util.List;
 
+//classe ajout d'un item dans la base de donnée
 public class AjoutItem extends AppCompatActivity
 {
     Button ajouter;
@@ -39,6 +40,7 @@ public class AjoutItem extends AppCompatActivity
         code.setText(barcodeDATA);//affichage du code du nouvel objet
         prodb = new DBHelper_Produit(AjoutItem.this.getBaseContext());
 
+        //liste de pays limité pour la provenance des produits
         List<String> spinnerArray =  new ArrayList<String>();
         spinnerArray.add("Unknown");
         spinnerArray.add("France");
@@ -58,6 +60,7 @@ public class AjoutItem extends AppCompatActivity
         Spinner sItems = (Spinner) findViewById(R.id.spinner);
         sItems.setAdapter(adapter);
 
+        //liste des choix de mode de transport
         List<String> spinnerArray2 =  new ArrayList<String>();
         spinnerArray2.add("Unknown");
         spinnerArray2.add("Train");
@@ -79,10 +82,12 @@ public class AjoutItem extends AppCompatActivity
 
         ajouter.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               if(!marque.getText().toString().equals("")&&!nom.getText().toString().equals(""))
+               if(!marque.getText().toString().equals("")&&!nom.getText().toString().equals(""))//si les données ont bien été rentrées
                {
                    Marque=marque.getText().toString();
                    Nom = nom.getText().toString();
+
+                   //insertion d'un nouveau produit
                    prodb.insertProduit2(Nom,Marque,barcodeDATA);
 
                    

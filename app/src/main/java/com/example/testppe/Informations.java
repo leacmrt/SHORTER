@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+//page d'affichage des informations de SHORTER
 public class Informations extends AppCompatActivity {
 
     @Override
@@ -19,7 +20,9 @@ public class Informations extends AppCompatActivity {
         setContentView(R.layout.activity_informations);
         Button back = findViewById(R.id.button2);
 
-        back.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener()
+        {
+            //bouton retour en arrière vers la page d'acceuille
             public void onClick(View v) {
                 finish();
             }

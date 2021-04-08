@@ -19,6 +19,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import java.util.List;
 
+//activité principale contenant le fragmpent principale
 public class MainActivity extends AppCompatActivity {
     private int util_id=0;
     public MainActivity()
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        //mise en place de la navigation en bas
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications,R.id.navigation_recherche,R.id.navigation_stat)
                 .build();
@@ -54,29 +56,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        //gestion du menu en haut
         switch (item.getItemId()) {
 
 
             case R.id.night_mode:
 
-                Toast.makeText(MainActivity.this, "night mode ",Toast.LENGTH_LONG).show();
+                //ouvereture page settings
                 Intent intent1 = new Intent(this, Settings.class);
 
                 startActivity(intent1);
                 break;
 
             case R.id.loggout:
+                //quitte l'application
                 finish();
                 break;
 
             case R.id.info:
-                Toast.makeText(MainActivity.this, "INFORMATIONS ",Toast.LENGTH_LONG).show();
+               //ouverture page d'information
                 Intent intent = new Intent(this, Informations.class);
                 startActivity(intent);
 
                  break;
             case R.id.avis :
-                Toast.makeText(MainActivity.this, "AVIS ",Toast.LENGTH_LONG).show();
+                //ouverture page avis
 
                 Intent intent2 = new Intent(this, Avis.class);
                 intent2.putExtra("EXTRA_SESSION_ID", util_id);
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.Localisation :
-                Toast.makeText(MainActivity.this, "LOCALISATION",Toast.LENGTH_LONG).show();
+                //ouverture page localisation
 
                 Intent intent3= new Intent(this, MapsActivity.class);
                 //intent3.putExtra("Nom", textView1.getText().toString());
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             default:
+                //commande par defaut
                 Toast.makeText(MainActivity.this, "default command ",Toast.LENGTH_LONG).show();
 
 

@@ -9,6 +9,7 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
 
+//classe acces SQLLITE bdd AVIS utilisateur
 public class DBHelper_Avis<Date> extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db_pste1";
@@ -29,7 +30,7 @@ public class DBHelper_Avis<Date> extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) { //creation si elle n'existe pas
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table Avis" +"(id integer,avis text)"
@@ -37,7 +38,8 @@ public class DBHelper_Avis<Date> extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)//upgrade si il le faut
+    {
         // TODO Auto-generated method stub
 
         if(newVersion>oldVersion)
@@ -47,7 +49,8 @@ public class DBHelper_Avis<Date> extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertavis (int id_util, String re) {
+    public void insertavis (int id_util, String re) //insertion d'un avis dans la base de données
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id",id_util);
